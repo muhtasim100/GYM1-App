@@ -1,4 +1,4 @@
-import app.apps.inc_dec as inc_dec    # The code to test
+import app.gymapp.inc_dec as inc_dec    # The code to test
 import unittest   # The test framework
 
 class Test_TestIncrementDecrement(unittest.TestCase):
