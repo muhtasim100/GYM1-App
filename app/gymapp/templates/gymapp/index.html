@@ -1,0 +1,30 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'gymapp/css/index.css' %}">
+<link rel="manifest" href="{% static 'gymapp/manifest.json' %}">
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Base</title>
+    </head>
+
+    <body>
+
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="/"><img src="/app/gymapp/static/gymapp/images/notebook.svg" alt="notebook"></a></li>
+                <li><a href="/newsfeed"><img src="/app/gymapp/static/gymapp/images/newsfeed.svg" alt="newsfeed"></a></li>
+                <li><a href="/leaderboard" class="central-action"><img src="/app/gymapp/static/gymapp/images/leaderboard.svg" alt="leaderboard"></a></li>
+                <li><a href="/exercises"><img src="/app/gymapp/static/gymapp/images/exercises.svg" alt="exercises"></a></li>
+                <li><a href="/forum"><img src="/app/gymapp/static/gymapp/images/forum.svg" alt="forum"></a></li>
+            </ul>
+        </nav>
+        
+    </body>
+
+</html>
