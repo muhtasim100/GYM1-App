@@ -3,7 +3,7 @@ body {
 }
 
 .navbar {
-    background-color: blue;
+    background-color: black;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -42,16 +42,17 @@ body {
   
 }
 
-/* .navbar img {
-    width: auto; 
-    height: auto;
-    min-width: 2vw; 
-    min-height: auto; 
-} */
-
 
 .navbar img {
     width: min(8vw, 40px); 
     height: auto; 
     min-width: 35px; 
+}
+
+
+.title {
+    display: flex; 
+    justify-content: center;
+    padding: 2%;
+    margin: 0;
 }
