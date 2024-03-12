@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Notable';
+    src: url(../fonts/Notable/Notable-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.welcome {
+    display: flex;
+    position: fixed;
+    top: 15vh; 
+    left: 0; 
+    width: 100vw; 
+    justify-content: center;
+
+}
+
+.welcome h1 {
+    font-family: 'Notable';
+    font-size: clamp(20px, 6vw, 32px); 
+    text-align: center;
+    color: #FFD700;
+}
