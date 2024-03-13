@@ -8,12 +8,11 @@
 
 .welcome {
     display: flex;
-    position: fixed;
-    top: 15vh; 
+    position: relative;
+    top: 10vh; 
     left: 0; 
-    width: 100vw; 
+    width: auto; 
     justify-content: center;
-
 }
 
 .welcome h1 {
