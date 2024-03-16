@@ -2,14 +2,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-import qrcode
+import qrcode, datetime, random, phonenumbers
 from io import BytesIO
 from django.core.files import File
-import phonenumbers
 from phonenumbers import geocoder
 from phonenumbers import PhoneNumberFormat
 from django.core.exceptions import ValidationError
-
+from django.utils import timezone
+from django.db.models.signals import post_save
 
 
 
@@ -18,13 +18,9 @@ class CustomUser(AbstractUser):
     address = models.CharField(max_length=255, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     qr_code = models.ImageField(upload_to='qr_codes/', blank=True, null=True)
-    email_verified = models.BooleanField(default=False) # Email verifiction for security.
-    phone_verified = models.BooleanField(default=False) # Phone number verifiction for security.
-
-
+    timestamp = models.DateTimeField(auto_now_add=True)
     # First name, surname, username, password and email in given from AbstractUser already.
-
-
+    
     # Override save method to generate a QR code when saving the user.
     def save(self, *args, **kwargs):
         if self.phone_number: # For error prevention and robustness.
