@@ -5,7 +5,8 @@ from gymapp.models import CustomUser
 
 class CustomUserModelTest(TestCase):
     
-    # CustomUser instance
+# Test 1)
+    # CustomUser instance creation.
     def test_create(self):
         user = CustomUser.objects.create_user(
             username='fakeuser', 
@@ -18,11 +19,12 @@ class CustomUserModelTest(TestCase):
 
         user.save()
 
+    # Checking if instance created.
         self.assertEqual(CustomUser.objects.count(),1)
         self.assertEqual(CustomUser.objects.first().username, 'fakeuser')
         self.assertEqual(CustomUser.objects.first().email, 'test@test.com')
         self.assertEqual(CustomUser.objects.first().dob.isoformat(), '2001-01-01')
         self.assertEqual(CustomUser.objects.first().address, '10 Downing Street')
         self.assertTrue(CustomUser.objects.first().qr_code)  
-
+    # Test result: passed.
         
