@@ -15,7 +15,7 @@ class RegisterUser(forms.ModelForm):
         self.fields['last_name'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Surname:'})
         self.fields['username'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Username:'})
         self.fields['email'].widget = forms.EmailInput(attrs = {'placeholder': 'Enter Email:'})
-        # self.fields['dob'].widget = forms.DateInput(attrs = {'placeholder': 'DD-MM-YYYY', 'type': 'date'})
+        self.fields['dob'].widget = forms.DateInput(attrs = {'placeholder': 'DD-MM-YYYY', 'type': 'date'})
         # Note: Date may have problems according to Youtube. May need JS.
         self.fields['address'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Address'})
         self.fields['phone_number'].widget = forms.TextInput(attrs ={ 'placeholder': 'Enter Phone Number:'})
