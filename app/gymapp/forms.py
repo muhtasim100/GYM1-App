@@ -7,12 +7,12 @@ from crispy_forms.layout import Submit, Layout, Field
 class RegisterUser(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'surname','username', 'email', 'dob', 'address', 'phone_number']
+        fields = ['first_name', 'last_name','username', 'email', 'dob', 'address', 'phone_number']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].widget = forms.TextInput(attrs = {'placeholder': 'Enter First Name:'})
-        self.fields['surname'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Surname:'})
+        self.fields['last_name'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Surname:'})
         self.fields['username'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Username:'})
         self.fields['email'].widget = forms.EmailInput(attrs = {'placeholder': 'Enter Email:'})
         # self.fields['dob'].widget = forms.DateInput(attrs = {'placeholder': 'DD-MM-YYYY', 'type': 'date'})
@@ -23,7 +23,7 @@ class RegisterUser(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'first_name', 
-            'surname',
+            'last_name',
             'username',
             'email',
             'dob',

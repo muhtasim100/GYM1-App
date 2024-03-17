@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import RegisterUser
 
 from django.http import HttpResponse
 
@@ -11,3 +12,7 @@ def home(request):
 
 def notebook(request):
     return render(request,'gymapp/notebook.html')
+
+def register(request):
+    return render(request,'gymapp/notebook.html')
+
