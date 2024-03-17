@@ -32,8 +32,10 @@ class CustomUser(AbstractUser):
                 self.phone_number = phonenumbers.format_number(parsed_phone, PhoneNumberFormat.E164)
             except phonenumbers.NumberParseException:
                 raise ValidationError("The phone number entered is not valid.")
+				# No need to say if valid because it will just be accepted.
         
-        if not self.qr_code:  # Check if QR code doesnt exist yet just for general error prevention.
+		# Check if QR code doesnt exist yet just for general error prevention.
+        if not self.qr_code:  
             qr = qrcode.make(self.username)  # Generate a QR code using the username.
             canvas = BytesIO()
             qr.save(canvas, format='PNG')
