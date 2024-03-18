@@ -12,7 +12,11 @@
     font-style: normal;
 }
 
-body, input, button, select, textarea {
+body {
+    overflow-y: hidden;
+}
+
+form, input, button, select, textarea {
     font-family: 'Fira-Regular';
 }
 
@@ -22,4 +26,15 @@ form {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+}
+
+input[type="date"].form-control {
+    height: auto; 
+    width: 53vw; 
+    margin: 1 auto;
+}
+
+
+.form-control {
+    margin-bottom: 1vh;
 }

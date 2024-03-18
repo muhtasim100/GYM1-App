@@ -10,6 +10,9 @@ class RegisterUser(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['first_name', 'last_name','username', 'email', 'dob', 'address', 'phone_number']
+        help_texts = {
+            'username': None,
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,7 +23,7 @@ class RegisterUser(forms.ModelForm):
         self.fields['last_name'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Surname'})
         self.fields['username'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Username'})
         self.fields['email'].widget = forms.EmailInput(attrs = {'placeholder': 'Enter Email'})
-        self.fields['dob'].widget = forms.DateInput(attrs = {'placeholder': 'DD-MM-YYYY', 'type': 'date'})
+        self.fields['dob'].widget = forms.DateInput(attrs = {'placeholder': 'DD-MM-YYYY', 'type': 'date', 'class': 'form-control'})
         # Note: Date may have problems according to Youtube. May need JS.
         self.fields['address'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Address'})
         self.fields['phone_number'].widget = forms.TextInput(attrs ={ 'placeholder': 'Enter Phone Number'})
