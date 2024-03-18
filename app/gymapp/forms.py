@@ -2,6 +2,8 @@ from .models import CustomUser
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 
 class RegisterUser(forms.ModelForm):
@@ -38,10 +40,8 @@ class RegisterUser(forms.ModelForm):
             # Crispy forms feature. 
         )
 
-     
     def allowed_username(self):
-        username = self.checking['username']
-        allowed_characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        if not all(char in allowed_characters for char in username):
+        username = self.cleaned_data['username']
+        if not username.isalnum():
             raise ValidationError(_('Username contains invalid characters. Only letters and digits are allowed.'))
         return username
