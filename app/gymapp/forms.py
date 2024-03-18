@@ -48,3 +48,4 @@ class RegisterUser(forms.ModelForm):
         if not username.isalnum():
             raise ValidationError(_('Username contains invalid characters. Only letters and digits are allowed.'))
         return username
+    # Making sure username is only numbers and letters.
