@@ -10,8 +10,8 @@
     
     <body>
         <form method="post">
+            {% csrf_token %}
             {% crispy form %}
-            <button type="submit" value="Submit">Register</button>
         </form>
     </body>
     

@@ -3,6 +3,7 @@ asgiref==3.7.2
 asttokens==2.4.1
 click==8.1.3
 comm==0.2.1
+crispy-bootstrap4==2024.1
 debugpy==1.8.1
 decorator==5.1.1
 distlib==0.3.7
