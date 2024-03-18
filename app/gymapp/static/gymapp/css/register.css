@@ -13,10 +13,28 @@
 }
 
 body {
-    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: #FFD700;
 }
 
-form, input, button, select, textarea {
+.title {
+    font-family: 'Notable';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    padding: 0%;
+    margin: 5vh;
+}
+
+input, button, select, textarea {
     font-family: 'Fira-Regular';
 }
 
@@ -25,16 +43,54 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 70vh;
+    font-family: 'Notable';
+
 }
 
 input[type="date"].form-control {
     height: auto; 
-    width: 53vw; 
-    margin: 1 auto;
+    width: 168px; 
+    margin: 2 auto;
 }
 
 
 .form-control {
-    margin-bottom: 1vh;
+    margin-bottom: 2vh;
+}
+
+.btn-primary {
+    margin-top: 3vh;
+    width: 200px; /* Preserving the specified width */
+    height: auto; /* Allows the height to adjust based on content */
+    background-color: #FFD700; /* Gold background */
+    color: black; /* Adjusted text color for better contrast with gold */
+    border: 2px solid #FFD700; /* Gold border to match the background */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 17px; /* Adjust padding as needed */
+    font-family: 'Fira-Regular'; /* Using Inter font-family as per .button-58 */
+    font-size: 16px;
+    font-weight: 600; /* Bold font weight */
+    line-height: 48px; /* Adjusting line height to vertically center text, can be altered based on actual height */
+    letter-spacing: -.8px;
+    transition: all .3s; /* Smooth transition for hover effects */
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.btn-primary:hover {
+    background-color: #e6c300; /* Slightly darker gold for hover state */
+    border-color: #e6c300;
+}
+
+.btn-primary:active {
+    background-color: #e6c300; /* Slightly darker gold for active state */
+    border-color: #e6c300;
 }

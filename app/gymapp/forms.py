@@ -38,7 +38,7 @@ class RegisterUser(forms.ModelForm):
             'address',
             'phone_number',
 
-            Submit('submit', 'Register', css_class='btn-primary')
+            Submit('submit', 'Sign Up', css_class='btn-primary')
             # Putting this here lets me reuse the same button in other forms without having to reuse code. 
             # Crispy forms feature. 
         )
