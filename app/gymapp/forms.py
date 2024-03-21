@@ -51,3 +51,17 @@ class RegisterUser(forms.ModelForm):
             raise ValidationError(_('Username contains invalid characters.\n Only letters and digits are allowed.'))
         return username
     # Making sure username is only numbers and letters.
+
+
+
+class LoginForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'username',
+            'password',
+
+            Submit('submit', 'Login', css_class='btn-primary')
+        )

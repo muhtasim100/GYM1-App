@@ -1,0 +1,40 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+        <link href="{% static 'gymapp/css/login.css' %}" rel="stylesheet">
+        <title>Register</title>
+    </head>
+    
+    <body>
+        <div class="title">
+            <h1>Login</h1>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {% crispy form %}
+
+            <div class="error-field">
+                {% if form.non_field_errors %}
+                <div class="error-msg">
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
+
+                {% if form.username.errors %}
+                <div class="error-msg">
+                    {{ form.username.errors.as_text }}
+                </div>
+                {% endif %}
+
+            </div>
+
+        </form>
+    </body>
+    
+</html>
+
