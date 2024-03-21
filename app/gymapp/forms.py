@@ -29,6 +29,7 @@ class RegisterUser(forms.ModelForm):
         self.fields['phone_number'].widget = forms.TextInput(attrs ={ 'placeholder': 'Enter Phone Number'})
 
         self.helper = FormHelper()
+        self.helper.error_text_inline = False # Error message not inline anymore.
         self.helper.layout = Layout(
             'first_name', 
             'last_name',
@@ -43,9 +44,10 @@ class RegisterUser(forms.ModelForm):
             # Crispy forms feature. 
         )
 
-    def allowed_username(self):
+    # Django has a clean_username method so by defining my own one I can customize the error message.
+    def clean_username(self): 
         username = self.cleaned_data['username']
         if not username.isalnum():
-            raise ValidationError(_('Username contains invalid characters. Only letters and digits are allowed.'))
+            raise ValidationError(_('Username contains invalid characters.\n Only letters and digits are allowed.'))
         return username
     # Making sure username is only numbers and letters.
