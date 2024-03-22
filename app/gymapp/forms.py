@@ -24,7 +24,7 @@ class RegisterUser(forms.ModelForm):
         self.fields['username'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Username'})
         self.fields['email'].widget = forms.EmailInput(attrs = {'placeholder': 'Enter Email'})
         self.fields['dob'].widget = forms.DateInput(attrs = {'placeholder': 'DD-MM-YYYY', 'type': 'date', 'class': 'form-control'})
-        # Note: Date may have problems according to Youtube. May need JS.
+        # Note: Date may have problems on some browsers according to Youtube. May need JS.
         self.fields['address'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Address'})
         self.fields['phone_number'].widget = forms.TextInput(attrs ={ 'placeholder': 'Enter Phone Number'})
 
@@ -56,7 +56,7 @@ class RegisterUser(forms.ModelForm):
 
 class LoginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        
+
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
