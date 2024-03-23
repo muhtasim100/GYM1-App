@@ -4,14 +4,19 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 
 
-class RegisterUser(forms.ModelForm):
-    class Meta:
+
+class RegisterUser(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields = ['first_name', 'last_name','username', 'email', 'dob', 'address', 'phone_number']
+        fields = ['first_name', 'last_name','username', 'email', 'password1', 'password2']
         help_texts = {
             'username': None,
+            'password1': None,
+            'password2': None,
         }
 
     def __init__(self, *args, **kwargs):
@@ -23,10 +28,10 @@ class RegisterUser(forms.ModelForm):
         self.fields['last_name'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Surname'})
         self.fields['username'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Username'})
         self.fields['email'].widget = forms.EmailInput(attrs = {'placeholder': 'Enter Email'})
-        self.fields['dob'].widget = forms.DateInput(attrs = {'placeholder': 'DD-MM-YYYY', 'type': 'date', 'class': 'form-control'})
-        # Note: Date may have problems on some browsers according to Youtube. May need JS.
-        self.fields['address'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Address'})
-        self.fields['phone_number'].widget = forms.TextInput(attrs ={ 'placeholder': 'Enter Phone Number'})
+        self.fields['password1'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Password'})
+        self.fields['password2'].widget = forms.TextInput(attrs = {'placeholder': 'Enter Password again'})
+
+
 
         self.helper = FormHelper()
         self.helper.error_text_inline = False # Error message not inline anymore.
@@ -35,9 +40,8 @@ class RegisterUser(forms.ModelForm):
             'last_name',
             'username',
             'email',
-            'dob',
-            'address',
-            'phone_number',
+            'password1',  
+            'password2', 
 
             Submit('submit', 'Sign Up', css_class='btn-primary')
             # Putting this here lets me reuse the same button in other forms without having to reuse code. 
@@ -54,11 +58,12 @@ class RegisterUser(forms.ModelForm):
 
 
 
-class LoginForm(forms.ModelForm):
+class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
+        self.helper = FormHelper(self)
+        self.helper.form_action = 'login'
         self.helper.layout = Layout(
             'username',
             'password',

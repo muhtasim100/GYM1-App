@@ -14,7 +14,7 @@
             <h1>Register</h1>
         </div>
 
-        <form method="post">
+        <form method="post" action="{% url 'register' %}">
             {% csrf_token %}
             {% crispy form %}
 
@@ -27,10 +27,28 @@
 
                 {% if form.username.errors %}
                 <div class="error-msg">
-                    {{ form.username.errors.as_text }}
+                    {% for error in form.username.errors %}
+                    {{ error }}
+                    {% endfor %}
                 </div>
                 {% endif %}
-
+            
+                {% if form.password1.errors %}
+                <div class="error-msg">
+                    {% for error in form.password1.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
+                {% if form.password2.errors %}
+                <div class="error-msg">
+                    {% for error in form.password2.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
             </div>
 
         </form>
