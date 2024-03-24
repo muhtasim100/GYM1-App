@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterUser, LoginForm
 from django.http import HttpResponse
+from django.contrib.auth import login as auth_login 
+from django.contrib.auth.decorators import login_required
+
 
 def base(request):
     return render(request,'gymapp/base.html')
@@ -20,7 +23,7 @@ def register(request):
 
         if form.is_valid(): # Erorr prevention.
             form.save()
-            return redirect('home')  # Redirect to home for now.
+            return redirect('login')  # Redirect to home for now.
         # Note: make sign in page.
 
     else:
@@ -28,16 +31,21 @@ def register(request):
 
     return render(request, 'gymapp/register.html', {'form':form})
 
+
+
+
 def login(request):
     if request.method == 'POST':
         form = LoginForm(data=request.POST)
 
         if form.is_valid():
             user = form.get_user()
-            login(request, user)
+            auth_login(request, user)
             return redirect('home')  
         
     else:
         form = LoginForm()
 
     return render(request, 'gymapp/login.html', {'form':form})
+
+

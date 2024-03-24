@@ -43,10 +43,9 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-height: 90vh;
+    min-height: 70vh;
     font-family: 'Notable';
     margin: auto;
-    /* padding-top: 20%; */
 }
 
 div {
