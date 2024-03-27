@@ -9,7 +9,7 @@ def base(request):
     return render(request,'gymapp/base.html')
 
 def home(request):
-    return render(request,'gymapp/home.html')
+    return render(request,'gymapp/home.html', {'user': request.user})
 
 def notebook(request):
     return render(request,'gymapp/notebook.html')
@@ -49,3 +49,7 @@ def login(request):
     return render(request, 'gymapp/login.html', {'form':form})
 
 
+
+@login_required
+def display_qr(request):
+    return render(request, 'display_qr.html', {'user': request.user})
