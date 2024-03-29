@@ -11,8 +11,8 @@ def base(request):
 def home(request):
     return render(request,'gymapp/home.html', {'user': request.user})
 
-def notebook(request):
-    return render(request,'gymapp/notebook.html')
+def tracker(request):
+    return render(request,'gymapp/tracker.html')
 
 
 

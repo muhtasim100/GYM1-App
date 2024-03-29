@@ -10,13 +10,11 @@ from phonenumbers import PhoneNumberFormat
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.db.models.signals import post_save
-
-
+from django.conf import settings
 
 class CustomUser(AbstractUser):
-    dob = models.DateField(verbose_name='Date of Birth', null=True, blank=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
+    # email
     qr_code = models.ImageField(upload_to='qr_codes/', blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     # First name, surname, username, password and email in given from AbstractUser already.
@@ -43,3 +41,19 @@ class CustomUser(AbstractUser):
             self.qr_code.save(file_name, File(canvas), save=False)
             
         super().save(*args, **kwargs)  # Save user with the QR code and phone numeber.
+
+# Details of a session on a date including a name to identify the workout.
+class WorkoutSession(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='workout_sessions')
+    # related_name could be useful for querying the database in later functionality.
+    date = models.DateField()
+    workout_name = models.CharField(max_length=40)  
+    # So User can pick personalised name for example, "Leg Day", "Arms + Shoulders" or "CT".
+    # 40 char not too long as it can be hard to display. Even this is generous. May need revision.
+
+    # For admin site and good practice. 
+    def __str__(self):
+        return f"{self.workout_name} on {self.date}"
+    
+
+    
