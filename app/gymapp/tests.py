@@ -14,9 +14,6 @@ class CustomUserModelTest(TestCase):
             username='fakeuser', 
             email='test@test.com',
             password='userisfake123',
-            dob='2001-01-01', 
-            address='10 Downing Street', 
-            phone_number='+447723566330'
         )
 
         user.save()
