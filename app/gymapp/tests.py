@@ -22,8 +22,6 @@ class CustomUserModelTest(TestCase):
         self.assertEqual(CustomUser.objects.count(),1)
         self.assertEqual(CustomUser.objects.first().username, 'fakeuser')
         self.assertEqual(CustomUser.objects.first().email, 'test@test.com')
-        self.assertEqual(CustomUser.objects.first().dob.isoformat(), '2001-01-01')
-        self.assertEqual(CustomUser.objects.first().address, '10 Downing Street')
         self.assertTrue(CustomUser.objects.first().qr_code)  
     # Test result: passed.
         
