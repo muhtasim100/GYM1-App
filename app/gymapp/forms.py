@@ -67,6 +67,6 @@ class LoginForm(AuthenticationForm):
         self.helper.layout = Layout(
             'username',
             'password',
-
+            
             Submit('submit', 'Login', css_class='btn-primary')
         )

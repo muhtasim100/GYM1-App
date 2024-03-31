@@ -139,7 +139,7 @@ AUTH_USER_MODEL = 'gymapp.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_URL = 'app/gymapp/templates/gymapp/login.html'
+LOGIN_URL = '/login/'
 
 MEDIA_URL = 'app/media/'
 
