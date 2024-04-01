@@ -40,7 +40,6 @@ class RegisterUser(UserCreationForm):
             'email',
             'password1',  
             'password2', 
-
             Submit('submit', 'Sign Up', css_class='btn-primary')
             # Putting this here lets me reuse the same button in other forms without having to reuse code. 
             # Crispy forms feature. 
@@ -65,7 +64,6 @@ class LoginForm(AuthenticationForm):
         self.helper.layout = Layout(
             'username',
             'password',
-            
             Submit('submit', 'Login', css_class='btn-primary')
         )
 
@@ -76,3 +74,12 @@ class WorkoutForm(forms.ModelForm):
         widgets =  {
             'date':forms.DateInput(attrs = {'type': 'date'}),
         }
+        
+    def __init__(self, *args, **kwargs):
+        super(WorkoutForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'workout_name',
+            'date',
+            Submit('submit', 'Save', css_class='btn-primary')
+        )

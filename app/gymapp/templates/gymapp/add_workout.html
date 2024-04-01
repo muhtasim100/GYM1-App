@@ -1,11 +1,21 @@
 {% extends "gymapp/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Add Workout{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/add_workout.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-<div class="container">
-    <h2>Add A Workout Session</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Session</button>
-    </form>
-</div>
+<body>
+    <div class="form-container">
+        <h1>Add A Workout Session</h1>
+         <form method="post" action="{% url 'add_workout' %}">
+            {% csrf_token %}
+            {% crispy form %}
+        </form>
+    </div>    
+</body>
 {% endblock %}
