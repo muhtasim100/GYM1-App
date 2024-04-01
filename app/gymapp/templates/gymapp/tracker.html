@@ -10,7 +10,9 @@
 {% block content %}
 <div class="tracker">
     <h1>Tracker</h1>
-    <img class="add-workout" src="/app/gymapp/static/gymapp/images/addworkout.svg">
+    <a href="{% url 'add_workout' %}">
+        <img class="add-workout" src="{% static 'gymapp/images/addworkout.svg' %}" alt="Add Workout">
+    </a>
     <div class="tracker-content"> 
         {% if sessions %}
         <table>
@@ -37,3 +39,7 @@
     </div>
 </div>
 {% endblock %}
+
+<!-- {% block javascript %}
+<script src="{% static 'gymapp/js/add-workout.js' %}"></script>
+{% endblock %} -->

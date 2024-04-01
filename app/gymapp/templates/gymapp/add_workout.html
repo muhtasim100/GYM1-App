@@ -1,0 +1,11 @@
+{% extends "gymapp/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Add A Workout Session</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Session</button>
+    </form>
+</div>
+{% endblock %}
