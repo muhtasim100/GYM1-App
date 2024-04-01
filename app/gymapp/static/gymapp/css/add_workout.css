@@ -5,6 +5,16 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Fira-Regular';
+    src: url('../fonts/Fira_Code/FiraCode-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    color: #FFD700;
+}
 
 .form-container {
     display: flex;
@@ -63,3 +73,39 @@
     border-color: #e6c300;
 }
 
+/* 
+form {
+    font-family: 'Notable';
+    font-size: clamp(20px, 6vw, 32px); 
+    text-align: center;
+    color: #FFD700;
+} */
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+    font-family: 'Notable';
+    margin: auto;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* input[type="date"].form-control {
+    height: auto; 
+    width: 168px; 
+    margin: 2 auto;
+} */
+
+
+input, button, select, textarea {
+    font-family: 'Fira-Regular';
+}

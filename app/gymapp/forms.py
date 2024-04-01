@@ -72,9 +72,13 @@ class WorkoutForm(forms.ModelForm):
         model = WorkoutSession
         fields = ['workout_name', 'date']
         widgets =  {
+            'workout_name': forms.TextInput(attrs={'placeholder': 'Enter Workout Name'}),
             'date':forms.DateInput(attrs = {'type': 'date'}),
         }
-        
+        # labels = {
+        #     'workout_name': 'Workout Name',
+        #     'date': 'Date',
+        # }
     def __init__(self, *args, **kwargs):
         super(WorkoutForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
