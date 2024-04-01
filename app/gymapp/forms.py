@@ -1,12 +1,10 @@
-from .models import CustomUser
+from .models import CustomUser, WorkoutSession
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 class RegisterUser(UserCreationForm):
@@ -70,3 +68,11 @@ class LoginForm(AuthenticationForm):
             
             Submit('submit', 'Login', css_class='btn-primary')
         )
+
+class WorkoutForm(forms.ModelForm):
+    class Meta:
+        model = WorkoutSession
+        fields = ['workout_name', 'date']
+        widgets =  {
+            'date':forms.DateInput(attrs = {'type': 'date'}),
+        }

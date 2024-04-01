@@ -10,6 +10,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     # path('login/', auth_views.LoginView.as_view(template_name='gymapp/login.html'), name='login'),
     path('login/', views.login, name='login'),
-
-
+    path('add_workout/', views.add_workout, name='add_workout'),
 ]

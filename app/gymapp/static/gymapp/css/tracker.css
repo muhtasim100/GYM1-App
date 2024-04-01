@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Notable';
+    src: url(../fonts/Notable/Notable-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.tracker {
+    display: flex;
+    position: relative;
+    top: 10vh; 
+    left: 0; 
+    width: auto; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tracker h1 {
+    font-family: 'Notable';
+    font-size: clamp(20px, 6vw, 32px); 
+    text-align: center;
+    color: #FFD700;
+    margin-bottom: 30px;
+}
+
+
+.tracker p {
+    font-family: 'Notable';
+    font-size: clamp(20px, 6vw, 32px); 
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+

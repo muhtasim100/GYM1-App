@@ -63,7 +63,7 @@ class Exercise(models.Model):
     custom_name = models.CharField(max_length=50, blank=True, null=True)  # User can specify if 'Other' is selected.
     reps = models.IntegerField()
     sets = models.IntegerField()
-    weight = models.DecimalField(max_digits=5 , decimal_places=2)
+    weight = models.DecimalField(max_digits=5 , decimal_places=2) 
 
     def __str__(self):
         if self.name == 'OT':

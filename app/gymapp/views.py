@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterUser, LoginForm
+from .forms import RegisterUser, LoginForm, WorkoutForm
 from django.http import HttpResponse
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth.decorators import login_required
@@ -38,13 +38,27 @@ def login(request):
         form = LoginForm()
     return render(request, 'gymapp/login.html', {'form':form})
 
+# Login required import used for error prevention. 
 @login_required
 def display_qr(request):
     return render(request, 'display_qr.html', {'user': request.user})
-
 
 @login_required
 def tracker(request):
     sessions = WorkoutSession.objects.filter(user=request.user).order_by('-date')
     return render(request, 'gymapp/tracker.html', {'sessions': sessions})
 
+@login_required
+def add_workout(request):
+    if request.method == 'POST':
+        form = WorkoutForm(request.POST)
+        if form.is_valid():
+            # Tried to set user first but encountered issue. So commit=False used to not save the form,
+            # until the user is also set.
+            new_session = form.save(commit=False)
+            new_session.user = request.user # Sets user to the session data.
+            new_session.save()
+            return redirect('tracker') # Redirects to tracker page where workout is displayed.
+    else:
+        form = WorkoutForm()
+    return render(request, 'gymapp/add_workout.html', {'form': form})
