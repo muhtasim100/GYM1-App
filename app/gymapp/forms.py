@@ -1,7 +1,7 @@
 from .models import CustomUser, WorkoutSession
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout
+from crispy_forms.layout import Submit, Layout, Div, Field
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -75,15 +75,23 @@ class WorkoutForm(forms.ModelForm):
             'workout_name': forms.TextInput(attrs={'placeholder': 'Enter Workout Name'}),
             'date':forms.DateInput(attrs = {'type': 'date'}),
         }
-        # labels = {
-        #     'workout_name': 'Workout Name',
-        #     'date': 'Date',
-        # }
+       
+    # def __init__(self, *args, **kwargs):
+    #     super(WorkoutForm, self).__init__(*args, **kwargs)
+    #     self.helper = FormHelper()
+    #     self.helper.layout = Layout(
+    #         'workout_name',
+    #         'date',
+    #         Submit('submit', 'Save', css_class='btn-primary')
+    #     )
+        
+
     def __init__(self, *args, **kwargs):
         super(WorkoutForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            'workout_name',
-            'date',
+            Div(Field('workout_name'),
+                Field('date'),
+                css_class='form-row'),
             Submit('submit', 'Save', css_class='btn-primary')
         )
