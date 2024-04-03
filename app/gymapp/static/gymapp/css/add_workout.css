@@ -73,15 +73,6 @@ body {
     border-color: #e6c300;
 }
 
-/* 
-form {
-    font-family: 'Notable';
-    font-size: clamp(20px, 6vw, 32px); 
-    text-align: center;
-    color: #FFD700;
-} */
-
-
 form {
     display: flex;
     flex-direction: column;
@@ -98,13 +89,6 @@ div {
     align-items: center;
     justify-content: center;
 }
-
-/* input[type="date"].form-control {
-    height: auto; 
-    width: 168px; 
-    margin: 2 auto;
-} */
-
 
 #div_id_date {
     margin-top: 10px;

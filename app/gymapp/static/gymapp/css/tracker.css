@@ -59,15 +59,11 @@ table {
 }
 
 td {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     text-align: center;
     height: 30px;
 }
 
 th {
-    /* font-family: 'Notable'; */
     font-family: 'Fira-Bold';
     height: 30px;
     font-size: large;

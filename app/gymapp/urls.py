@@ -8,7 +8,6 @@ urlpatterns = [
     path('tracker/', views.tracker, name='tracker'),
     path('home/', views.home, name='home'),
     path('register/', views.register, name='register'),
-    # path('login/', auth_views.LoginView.as_view(template_name='gymapp/login.html'), name='login'),
     path('login/', views.login, name='login'),
     path('add_workout/', views.add_workout, name='add_workout'),
     path('session/<int:session_id>/', views.session_detail, name='session_detail'),

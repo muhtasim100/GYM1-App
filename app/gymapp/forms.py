@@ -76,16 +76,6 @@ class WorkoutForm(forms.ModelForm):
             'date':forms.DateInput(attrs = {'type': 'date'}),
         }
        
-    # def __init__(self, *args, **kwargs):
-    #     super(WorkoutForm, self).__init__(*args, **kwargs)
-    #     self.helper = FormHelper()
-    #     self.helper.layout = Layout(
-    #         'workout_name',
-    #         'date',
-    #         Submit('submit', 'Save', css_class='btn-primary')
-    #     )
-        
-
     def __init__(self, *args, **kwargs):
         super(WorkoutForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
