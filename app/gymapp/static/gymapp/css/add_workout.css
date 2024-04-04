@@ -91,7 +91,7 @@ div {
 }
 
 #div_id_date {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .form-control {
@@ -110,5 +110,4 @@ input, button, select, textarea {
 
 .form-row {
     width: 250px;
-
 }

@@ -105,6 +105,8 @@ class ExerciseForm(forms.ModelForm):
             Submit('submit', 'Save', css_class='btn-primary')
             )
         self.fields['name'].choices = Exercise.EXERCISE_CHOICES
+        self.fields['custom_name'].label = "Exercise Name"
+
 
     def clean(self):
         cleaned_data = super().clean()

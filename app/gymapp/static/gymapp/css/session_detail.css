@@ -90,25 +90,20 @@ div {
     justify-content: center;
 }
 
-#div_id_date {
-    margin-top: 10px;
-}
-
 .form-control {
     width: 100%;
 }
 
-input[type="date"].form-control {
-    width: 175px;
+/* input[type="id_name"].form-control { */
+#id_name {
+    width: 181px;
     margin: 2 auto;
-
 }
 
 input, button, select, textarea {
     font-family: 'Fira-Regular';
 }
 
-.form-row {
-    width: 250px;
-
+.form-group {
+    margin-top: 15px;
 }
