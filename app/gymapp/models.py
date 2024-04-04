@@ -59,7 +59,7 @@ class Exercise(models.Model):
     ]
 
     workout_session = models.ForeignKey(WorkoutSession, on_delete=models.CASCADE, related_name='exercises')
-    name = models.CharField(max_length=100, choices = EXERCISE_CHOICES, default='OT') # Pre made list exercises.
+    name = models.CharField(max_length=100, choices = EXERCISE_CHOICES, default='BP') # Pre made list exercises.
     custom_name = models.CharField(max_length=50, blank=True, null=True)  # User can specify if 'Other' is selected.
     reps = models.IntegerField()
     sets = models.IntegerField()

@@ -1,0 +1,114 @@
+@font-face {
+    font-family: 'Notable';
+    src: url(../fonts/Notable/Notable-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira-Regular';
+    src: url('../fonts/Fira_Code/FiraCode-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    color: #FFD700;
+}
+
+.form-container {
+    display: flex;
+    position: relative;
+    top: 10vh; 
+    left: 0; 
+    width: auto; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-container h1 {
+    font-family: 'Notable';
+    font-size: clamp(20px, 6vw, 32px); 
+    text-align: center;
+    color: #FFD700;
+    margin-bottom: 30px;
+}
+
+
+/* Button styling from https://getcssscan.com/css-buttons-examples By Module System Design. */
+.btn-primary {
+    margin-top: 5vh;
+    width: 200px; 
+    height: auto; 
+    background-color: #FFD700; 
+    color: black; 
+    border: 2px solid #FFD700; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 17px; 
+    font-family: 'Fira-Regular'; 
+    font-size: 16px;
+    font-weight: 600; 
+    line-height: 48px; 
+    letter-spacing: -.8px;
+    transition: all .3s;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.btn-primary:hover {
+    background-color: #e6c300; 
+    border-color: #e6c300;
+}
+
+.btn-primary:active {
+    background-color: #e6c300; 
+    border-color: #e6c300;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    font-family: 'Notable';
+    margin: auto;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#div_id_date {
+    margin-top: 10px;
+}
+
+.form-control {
+    width: 100%;
+}
+
+input[type="date"].form-control {
+    width: 175px;
+    margin: 2 auto;
+
+}
+
+input, button, select, textarea {
+    font-family: 'Fira-Regular';
+}
+
+.form-row {
+    width: 250px;
+
+}

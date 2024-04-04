@@ -17,5 +17,11 @@
             {% crispy form %}
         </form>
     </div>    
+    {% block javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <!-- Using CDN due to download issues. -->
+    <script src="{% static 'gymapp/js/custom_name.js' %}" type="text/javascript"></script>
+    {% endblock %}
 </body>
 {% endblock %}
+

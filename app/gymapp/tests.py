@@ -35,16 +35,16 @@ class LogInTest(TestCase):
             'password': 'secret'}
         get_user_model().objects.create_user(**self.credentials)
     def test_login(self):
-        # send login data
+        # Send login data.
         login_url = reverse('login') 
         response = self.client.post(login_url, self.credentials, follow=True)
-        # should be logged in now
+        # Should be logged in now.
         self.assertTrue(response.context['user'].is_authenticated)
 
 
 class TrackerTests(TestCase):
     def setUp(self):
-        # Creating a user
+        # Creating a user.
         self.credentials = {'username': 'testuser', 'password': 'testing100'}
         self.user = get_user_model().objects.create_user(**self.credentials)
         self.client = Client()
@@ -56,7 +56,7 @@ class TrackerTests(TestCase):
             'workout_name': 'Testing',
             'date': '2024-04-19'
         }
-        # User adds a workout session
+        # User adds a workout session.
         response = self.client.post(url, data)
         # Check redirect after adding.
         # From https://stackoverflow.com/questions/14951356/django-testing-if-the-page-has-redirected-to-the-desired-url
