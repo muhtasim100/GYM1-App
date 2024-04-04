@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterUser, LoginForm, WorkoutForm
+from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm
 from django.http import HttpResponse
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth.decorators import login_required
@@ -70,4 +70,5 @@ def add_workout(request):
 @login_required
 def session_detail(request, session_id):
     session = get_object_or_404(WorkoutSession, pk=session_id)
-    return render(request, 'gymapp/session_detail.html', {'session': session})
+    form = ExerciseForm()  
+    return render(request, 'gymapp/session_detail.html', {'session': session, 'form': form})

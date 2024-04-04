@@ -1,4 +1,4 @@
-from .models import CustomUser, WorkoutSession
+from .models import CustomUser, WorkoutSession, Exercise
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Div, Field
@@ -85,3 +85,26 @@ class WorkoutForm(forms.ModelForm):
                 css_class='form-row'),
             Submit('submit', 'Save', css_class='btn-primary')
         )
+
+class ExerciseForm(forms.ModelForm):
+    class Meta:
+        model = Exercise
+        fields = ['name', 'custom_name', 'reps', 'sets', 'weight']
+        widgets = {
+            'reps': forms.NumberInput(attrs={'placeholder': 'Enter Reps'}),
+            'sets': forms.NumberInput(attrs={'placeholder': 'Enter Sets'}),
+            'weight': forms.NumberInput(attrs={'placeholder': 'Enter Weight'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ExerciseForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Field('name', css_class='form-control'),
+            Field('custom_name', css_class='form-control'),
+            Field('reps', css_class='form-control'),
+            Field('sets', css_class='form-control'),
+            Field('weight', css_class='form-control'),
+            Submit('submit', 'Save', css_class='btn-primary')
+            )
+        self.fields['name'].choices = Exercise.EXERCISE_CHOICES
