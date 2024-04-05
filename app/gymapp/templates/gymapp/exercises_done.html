@@ -30,9 +30,9 @@
             <tbody>
                 {% for exercise in exercises %}
                 <tr>
-                    <td>{{ exercise.name }}</td>
+                    <td>{{ exercise.get_name_display }}</td>
                     <td>
-                        <a href="{% url 'exercise_info' exercise.id %}">
+                        <a href="{% url 'detail_view' exercise.id %}">
                             <img src="{% static 'gymapp/images/info.svg' %}" alt="View Details" class="info-icon">
                         </a>
                     </td>

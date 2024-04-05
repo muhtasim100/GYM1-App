@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block title %}Set Info{% endblock %}
+{% block title %}Set Data{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'gymapp/css/add_exercise.css' %}">
@@ -12,7 +12,7 @@
 <body>
     <div class="form-container">
         <h1>How was your set?</h1>
-        <form method="post" action="{% url 'session_detail' session.id %}">
+        <form method="post" action="{% url 'set_info' exercise.id %}">
             {% csrf_token %}
             {% crispy form %}
         </form>

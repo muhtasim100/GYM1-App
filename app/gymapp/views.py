@@ -69,16 +69,24 @@ def add_workout(request):
 
 @login_required
 def add_exercise(request, session_id):
-    session = get_object_or_404(WorkoutSession, pk=session_id)
-    form = ExerciseForm()  
-    return render(request, 'gymapp/add_exercise.html', {'session': session, 'form': form})
+    session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
+    if request.method == 'POST':
+        form = ExerciseForm(request.POST)
+        if form.is_valid():
+            new_exercise = form.save(commit=False)
+            new_exercise.workout_session = session
+            new_exercise.save()
+            return redirect('detail_view', session_id=session.id, exercise_id=new_exercise.id)
+    else:
+        form = ExerciseForm()
+    return render(request, 'gymapp/add_exercise.html', {'form': form, 'session': session})
 
 @login_required
-def detail_view(request, session_id):
-    # Gets the specific workout session clicked on by the user.
+def detail_view(request, session_id, exercise_id):
+    # Gets the specific workout session clicked on by the user and the specific exercise.
     session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
-    exercises = session.exercises.all()
-    return render(request, 'gymapp/detail_view.html', {'session': session, 'exercises': exercises})
+    exercise = get_object_or_404(Exercise, pk=exercise_id)
+    return render(request, 'gymapp/detail_view.html', {'session': session, 'exercise': exercise})
 
 @login_required
 def exercises_done(request, session_id):

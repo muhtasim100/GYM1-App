@@ -12,7 +12,7 @@
 <body>
     <div class="form-container">
         <h1>Add An Exercise</h1>
-        <form method="post" action="{% url 'detail_view' session.id %}">
+        <form method="post" action="{% url 'add_exercise' session.id%}">
             {% csrf_token %}
             {% crispy form %}
         </form>

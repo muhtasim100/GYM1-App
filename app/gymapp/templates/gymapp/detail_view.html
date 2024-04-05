@@ -10,7 +10,22 @@
 <body>
 
         <div class="details-view">
-            <h1>{{ session.workout_name }} on {{ session.date|date:"d-m-Y"  }} <br> {{ exercise.get_name_display }}</h1>
+            <h1>{{ session.date|date:"d-m-Y"  }} <br> {{ exercise.get_name_display }}</h1>
+            <div class="controls">
+                <a href="{% url 'add_exercise' session.id %}">
+                    <img src="{% static 'gymapp/images/back.svg' %}" alt="Back" class="back-btn">
+                </a>
+                <a href="{% url 'set_info' session.id %}">
+                    <img src="{% static 'gymapp/images/add.svg' %}" alt="Add" class="add-btn">
+                </a>
+                <a >
+                    <img src="{% static 'gymapp/images/edit.svg' %}" alt="Edit" class="edit-btn">
+                </a>
+                <a href="{% url 'add_exercise' session.id %}">
+                    <img src="{% static 'gymapp/images/delete.svg' %}" alt="Delete" class="del-btn">
+                </a>
+            </div>
+
             <table>
                 <thead>
                     <tr>

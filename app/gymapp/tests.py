@@ -67,18 +67,34 @@ class TrackerTests(TestCase):
     
     def test_add_exercise(self):
         session = WorkoutSession.objects.create(user=self.user, workout_name='Tester Exercise', date='2024-04-19')
-        url = reverse('session_detail', args=[session.id])
+        # url = reverse('session_detail', args=[session.id])
+        # data = {
+        #     'name': 'BP',
+        #     'custom_name': '',
+        #     'reps': 10,
+        #     'sets': 3,
+        #     'weight': 100
+        # }
+        # response = self.client.post(url, data)
+        # # Check if successfully added.
+        # self.assertEqual(response.status_code, 200) 
+        # # 200 means it stays on the same page.
+        # # Check if exercise was added to the session.
+        # self.assertEqual(Exercise.objects.count(), 1)
+        # self.assertEqual(Exercise.objects.first().name, 'BP')
+        url = reverse('add_exercise', args=[session.id])  
         data = {
-            'name': 'BP',
-            'custom_name': '',
-            'reps': 10,
-            'sets': 3,
-            'weight': 100
+            'name': 'OT',
+            'custom_name': 'Tester'
         }
         response = self.client.post(url, data)
-        # Check if successfully added.
-        self.assertEqual(response.status_code, 200) 
-        # 200 means it stays on the same page.
-        # Check if exercise was added to the session.
+
+        # Check if the response is a redirect (status code 302) which indicates success.
+        self.assertEqual(response.status_code, 302)
+
+        # Check if the exercise was added to the session.
         self.assertEqual(Exercise.objects.count(), 1)
-        self.assertEqual(Exercise.objects.first().name, 'BP')
+        exercise = Exercise.objects.first()
+        self.assertEqual(exercise.name, 'OT')
+        self.assertEqual(exercise.custom_name, 'Tester')
+        self.assertEqual(exercise.workout_session, session)
