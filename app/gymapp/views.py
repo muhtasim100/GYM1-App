@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm
+from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm, DetailsForm, Exercise
 from django.http import HttpResponse
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth.decorators import login_required
@@ -68,7 +68,49 @@ def add_workout(request):
     return render(request, 'gymapp/add_workout.html', {'form': form})
 
 @login_required
-def session_detail(request, session_id):
+def add_exercise(request, session_id):
     session = get_object_or_404(WorkoutSession, pk=session_id)
     form = ExerciseForm()  
-    return render(request, 'gymapp/session_detail.html', {'session': session, 'form': form})
+    return render(request, 'gymapp/add_exercise.html', {'session': session, 'form': form})
+
+@login_required
+def detail_view(request, session_id):
+    # Gets the specific workout session clicked on by the user.
+    session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
+    exercises = session.exercises.all()
+    return render(request, 'gymapp/detail_view.html', {'session': session, 'exercises': exercises})
+
+@login_required
+def exercises_done(request, session_id):
+    # Retrieve the session by ID and ensure it belongs to the current user
+    session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
+    
+    if request.method == 'POST':
+        form = ExerciseForm(request.POST)
+        if form.is_valid():
+            new_exercise = form.save(commit=False)
+            new_exercise.workout_session = session
+            new_exercise.save()
+            return redirect('exercises_done', session_id=session_id)
+    else:
+        form = ExerciseForm()
+
+    # Pass existing exercises for this session and the form for adding new exercises to the template
+    exercises = session.exercises.all()
+    return render(request, 'gymapp/exercises_done.html', {'session': session, 'exercises': exercises, 'form': form})
+
+@login_required
+def set_info(request, exercise_id):
+    exercise = get_object_or_404(Exercise, pk=exercise_id, workout_session__user=request.user)
+    if request.method == 'POST':
+        form = DetailsForm(request.POST)
+        if form.is_valid():
+            exercise_detail = form.save(commit=False)
+            exercise_detail.exercise = exercise
+            exercise_detail.save()
+            return redirect('exercises_done', session_id=exercise.workout_session_id)
+    else:
+        form = DetailsForm()
+
+    exercise_details = exercise.details.all()
+    return render(request, 'gymapp/set_info.html', {'exercise': exercise, 'exercise_details': exercise_details, 'form': form})

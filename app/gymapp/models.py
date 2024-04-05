@@ -61,12 +61,17 @@ class Exercise(models.Model):
     workout_session = models.ForeignKey(WorkoutSession, on_delete=models.CASCADE, related_name='exercises')
     name = models.CharField(max_length=100, choices = EXERCISE_CHOICES, default='BP') # Pre made list exercises.
     custom_name = models.CharField(max_length=50, blank=True, null=True)  # User can specify if 'Other' is selected.
-    reps = models.IntegerField()
-    sets = models.IntegerField()
-    weight = models.DecimalField(max_digits=5 , decimal_places=2) 
-
+    
     def __str__(self):
         if self.name == 'OT':
             return self.custom_name
         return self.get_name_display()
     
+class ExerciseDetail(models.Model):
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='details')
+    reps = models.IntegerField()
+    sets = models.IntegerField()
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.sets} sets of {self.reps} reps at {self.weight}kg/lb."

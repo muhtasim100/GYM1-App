@@ -1,0 +1,35 @@
+{% extends 'gymapp/base.html' %}
+{% load static %}
+{% block title %}Session Details{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/detail_view.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<body>
+
+        <div class="details-view">
+            <h1>{{ session.workout_name }} on {{ session.date|date:"d-m-Y"  }} <br> {{ exercise.get_name_display }}</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reps</th>
+                        <th>Sets</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exercise in exercises %}
+                    <tr>
+                        <td>{{ exercise.reps }}</td>
+                        <td>{{ exercise.sets }}</td>
+                        <td>{{ exercise.weight }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+</body>
+{% endblock %}

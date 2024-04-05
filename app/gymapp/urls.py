@@ -10,6 +10,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('add_workout/', views.add_workout, name='add_workout'),
-    path('session/<int:session_id>/', views.session_detail, name='session_detail'),
-
+    path('session/<int:session_id>/', views.add_exercise, name='add_exercise'),
+    path('detail_view/<int:session_id>/', views.detail_view, name='detail_view'),
+    path('session/<int:session_id>/exercises/', views.exercises_done, name='exercises_done'),
+    path('exercise/<int:exercise_id>/details/', views.set_info, name='set_info')
 ]

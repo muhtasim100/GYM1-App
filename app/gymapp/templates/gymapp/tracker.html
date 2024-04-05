@@ -27,9 +27,9 @@
                 {% for session in sessions %}
                 <tr>
                     <td>{{ session.workout_name }}</td>
-                    <td>{{ session.date }}</td>
+                    <td>{{ session.date|date:"d-m-Y"  }}</td>
                     <td>
-                        <a href="{% url 'session_detail' session.id %}">
+                        <a href="{% url 'exercises_done' session.id %}">
                             <img src="{% static 'gymapp/images/info.svg' %}" alt="View details" class="details-icon">
                         </a>
                     </td>

@@ -1,4 +1,4 @@
-from .models import CustomUser, WorkoutSession, Exercise
+from .models import CustomUser, WorkoutSession, Exercise, ExerciseDetail
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Div, Field
@@ -85,11 +85,8 @@ class WorkoutForm(forms.ModelForm):
 class ExerciseForm(forms.ModelForm):
     class Meta:
         model = Exercise
-        fields = ['name', 'custom_name', 'reps', 'sets', 'weight']
+        fields = ['name', 'custom_name']
         widgets = {
-            'reps': forms.NumberInput(attrs={'placeholder': 'Enter Reps'}),
-            'sets': forms.NumberInput(attrs={'placeholder': 'Enter Sets'}),
-            'weight': forms.NumberInput(attrs={'placeholder': 'Enter Weight'}),
             'custom_name': forms.NumberInput(attrs={'placeholder': 'Enter Exercise Name'}),
         }
 
@@ -98,9 +95,6 @@ class ExerciseForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field('name', css_class='form-control'),
-            Field('reps', css_class='form-control'),
-            Field('sets', css_class='form-control'),
-            Field('weight', css_class='form-control'),
             Field('custom_name', css_class='form-control'),
             Submit('submit', 'Save', css_class='btn-primary')
             )
@@ -118,3 +112,24 @@ class ExerciseForm(forms.ModelForm):
         elif name != 'OT' and custom_name:
             cleaned_data['custom_name'] = ''
         return cleaned_data
+
+
+class DetailsForm(forms.ModelForm):
+    class Meta:
+        model = ExerciseDetail
+        fields = ['reps', 'sets', 'weight']
+        widgets = {
+            'reps': forms.NumberInput(attrs={'placeholder': 'Enter Reps'}),
+            'sets': forms.NumberInput(attrs={'placeholder': 'Enter Sets'}),
+            'weight': forms.NumberInput(attrs={'placeholder': 'Enter Weight'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(DetailsForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'reps',
+            'sets',
+            'weight',
+            Submit('submit', 'Save', css_class='btn-primary')
+        )

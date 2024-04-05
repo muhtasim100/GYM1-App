@@ -1,0 +1,22 @@
+{% extends "gymapp/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Set Info{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/add_exercise.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<body>
+    <div class="form-container">
+        <h1>How was your set?</h1>
+        <form method="post" action="{% url 'session_detail' session.id %}">
+            {% csrf_token %}
+            {% crispy form %}
+        </form>
+    </div>    
+</body>
+{% endblock %}
+

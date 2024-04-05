@@ -1,0 +1,48 @@
+{% extends "gymapp/base.html" %}
+{% load static %}
+
+{% block title %}Session Details{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/exercises_done.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="session-details">
+    <h1>EXERCISES<br>{{ session.date|date:"d-m-Y" }}</h1>
+    <div class="btn-container"> 
+        <a href="{% url 'tracker' %}">
+            <img src="{% static 'gymapp/images/back.svg' %}" alt="Go Back" class="back-btn">
+        </a>
+        <a href="{% url 'add_exercise' session.id %}">
+            <img src="{% static 'gymapp/images/add_exercise.svg' %}" alt="Add Exercise" class="add-ex">
+        </a>
+    </div>
+    <div class="exercise-list">
+        {% if exercises %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercise Name</th>
+                    <th>Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in exercises %}
+                <tr>
+                    <td>{{ exercise.name }}</td>
+                    <td>
+                        <a href="{% url 'exercise_info' exercise.id %}">
+                            <img src="{% static 'gymapp/images/info.svg' %}" alt="View Details" class="info-icon">
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No exercises logged for this session yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

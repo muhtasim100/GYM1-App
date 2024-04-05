@@ -2,17 +2,17 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block title %}Details{% endblock %}
+{% block title %}Add Exercise{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'gymapp/css/session_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'gymapp/css/add_exercise.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 <body>
     <div class="form-container">
         <h1>Add An Exercise</h1>
-        <form method="post" action="{% url 'session_detail' session.id %}">
+        <form method="post" action="{% url 'detail_view' session.id %}">
             {% csrf_token %}
             {% crispy form %}
         </form>
