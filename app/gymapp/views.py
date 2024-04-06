@@ -116,7 +116,7 @@ def set_info(request, exercise_id):
             exercise_detail = form.save(commit=False)
             exercise_detail.exercise = exercise
             exercise_detail.save()
-            return redirect('exercises_done', session_id=exercise.workout_session_id)
+            return redirect('detail_view', session_id=exercise.workout_session_id, exercise_id=exercise_id)
     else:
         form = DetailsForm()
 
