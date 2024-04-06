@@ -35,11 +35,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for exercise in exercises %}
+                    {% for set in set_details %}
                     <tr>
-                        <td>{{ exercise.reps }}</td>
-                        <td>{{ exercise.sets }}</td>
-                        <td>{{ exercise.weight }}</td>
+                        <td>{{ set.reps }}</td>
+                        <td>{{ set.sets }}</td>
+                        <td>{{ set.weight }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -86,7 +86,9 @@ def detail_view(request, session_id, exercise_id):
     # Gets the specific workout session clicked on by the user and the specific exercise.
     session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
     exercise = get_object_or_404(Exercise, pk=exercise_id)
-    return render(request, 'gymapp/detail_view.html', {'session': session, 'exercise': exercise})
+    set_details = exercise.details.all()  # Assuming 'details' is the related_name for ExerciseDetail
+    return render(request, 'gymapp/detail_view.html', {'session': session, 'exercise': exercise,
+                                                        'set_details': set_details,})
 
 @login_required
 def exercises_done(request, session_id):
