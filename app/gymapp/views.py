@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm, DetailsForm, Exercise
+from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm, DetailsForm, Exercise, ExerciseDetail
 from django.http import HttpResponse
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth.decorators import login_required
@@ -107,7 +107,8 @@ def exercises_done(request, session_id):
 
     # Pass existing exercises for this session and the form for adding new exercises to the template
     exercises = session.exercises.all()
-    return render(request, 'gymapp/exercises_done.html', {'session': session, 'exercises': exercises, 'form': form})
+    return render(request, 'gymapp/exercises_done.html', {'session': session, 'exercises': exercises,
+                                                           'form': form})
 
 @login_required
 def set_info(request, exercise_id):
@@ -117,10 +118,21 @@ def set_info(request, exercise_id):
         if form.is_valid():
             exercise_detail = form.save(commit=False)
             exercise_detail.exercise = exercise
+            # Adding some new logic for set info. We want set number to be assigned.
+            # set_num represents the chronological set number in the session of that particular exercise.
+            # We order the set numbers and then get the last one which is going to be the highest number.
+            set_num = ExerciseDetail.objects.filter(exercise=exercise).order_by('sets').last()
+            # If theres no set_num this means it must be the first set so equate the 'sets' to 1.
+            # Or else, add one to the set_num which is the set number of the last set.
+            if not set_num:
+                exercise_detail.sets = 1
+            else:
+                exercise_detail.sets = set_num.sets + 1
             exercise_detail.save()
             return redirect('detail_view', session_id=exercise.workout_session_id, exercise_id=exercise_id)
     else:
         form = DetailsForm()
 
     exercise_details = exercise.details.all()
-    return render(request, 'gymapp/set_info.html', {'exercise': exercise, 'exercise_details': exercise_details, 'form': form})
+    return render(request, 'gymapp/set_info.html', {'exercise': exercise, 
+                                                    'exercise_details': exercise_details, 'form': form})

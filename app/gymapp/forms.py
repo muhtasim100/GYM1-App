@@ -117,10 +117,9 @@ class ExerciseForm(forms.ModelForm):
 class DetailsForm(forms.ModelForm):
     class Meta:
         model = ExerciseDetail
-        fields = ['reps', 'sets', 'weight']
+        fields = ['reps', 'weight']
         widgets = {
             'reps': forms.NumberInput(attrs={'placeholder': 'Enter Reps'}),
-            'sets': forms.NumberInput(attrs={'placeholder': 'Enter Sets'}),
             'weight': forms.NumberInput(attrs={'placeholder': 'Enter Weight'}),
         }
 
@@ -129,7 +128,6 @@ class DetailsForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'reps',
-            'sets',
             'weight',
             Submit('submit', 'Save', css_class='btn-primary')
         )

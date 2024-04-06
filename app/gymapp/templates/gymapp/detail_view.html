@@ -29,16 +29,16 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Reps</th>
                         <th>Set Number</th>
+                        <th>Reps</th>
                         <th>Weight</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for set in set_details %}
                     <tr>
-                        <td>{{ set.reps }}</td>
                         <td>{{ set.sets }}</td>
+                        <td>{{ set.reps }}</td>
                         <td>{{ set.weight }}</td>
                     </tr>
                     {% endfor %}
