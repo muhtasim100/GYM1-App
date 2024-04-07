@@ -83,3 +83,11 @@ th, td {
 /* .form-group {
     margin-top: 2vh;
 } */
+
+.checkbox-column {
+    display: none;
+}
+
+.selected-row {
+    background-color: grey;
+}

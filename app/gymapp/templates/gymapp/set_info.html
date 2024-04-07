@@ -5,13 +5,19 @@
 {% block title %}Set Data{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'gymapp/css/add_exercise.css' %}">
+    <link rel="stylesheet" href="{% static 'gymapp/css/set_info.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 <body>
+    <div class="go-back">
+        <a href="{% url 'detail_view' session_id=exercise.workout_session_id exercise_id=exercise.id %}">
+            <img src="{% static 'gymapp/images/back.svg' %}" alt="Back" class="back-btn">
+        </a>
+    </div>
+
     <div class="form-container">
-        <h1>How was your set?</h1>
+        <h1>{{ exercise.get_name_display }} - Set {{ set_num }}<br>How was your set?</h1>
         <form method="post" action="{% url 'set_info' exercise.id %}">
             {% csrf_token %}
             {% crispy form %}

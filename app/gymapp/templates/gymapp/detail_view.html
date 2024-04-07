@@ -12,7 +12,7 @@
         <div class="details-view">
             <h1>{{ session.date|date:"d-m-Y"  }} <br> {{ exercise.get_name_display }}</h1>
             <div class="controls">
-                <a href="{% url 'add_exercise' session.id %}">
+                <a href="{% url 'exercises_done' session.id %}">
                     <img src="{% static 'gymapp/images/back.svg' %}" alt="Back" class="back-btn">
                 </a>
                 <a href="{% url 'set_info' session.id %}">
@@ -21,14 +21,13 @@
                 <a >
                     <img src="{% static 'gymapp/images/edit.svg' %}" alt="Edit" class="edit-btn">
                 </a>
-                <a href="{% url 'add_exercise' session.id %}">
-                    <img src="{% static 'gymapp/images/delete.svg' %}" alt="Delete" class="del-btn">
-                </a>
+                <img src="{% static 'gymapp/images/delete.svg' %}" alt="Delete" class="del-btn" id="toggle-delete">
             </div>
 
             <table>
                 <thead>
                     <tr>
+                        <th class="checkbox-column">Select</th>
                         <th>Set Number</th>
                         <th>Reps</th>
                         <th>Weight</th>
@@ -37,6 +36,9 @@
                 <tbody>
                     {% for set in set_details %}
                     <tr>
+                        <td class="checkbox-column">
+                            <input type="checkbox" name="selected_sets" value="{{ set.id }}">
+                        </td>
                         <td>{{ set.sets }}</td>
                         <td>{{ set.reps }}</td>
                         <td>{{ set.weight }}</td>
@@ -46,5 +48,10 @@
             </table>
         </div>
 
+        {% block javascript %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+         <!-- Using CDN due to download issues. -->
+        <script src="{% static 'gymapp/js/delete.js' %}" type="text/javascript"></script>          
+        {% endblock %}
 </body>
 {% endblock %}

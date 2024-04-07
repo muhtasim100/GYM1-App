@@ -113,26 +113,34 @@ def exercises_done(request, session_id):
 @login_required
 def set_info(request, exercise_id):
     exercise = get_object_or_404(Exercise, pk=exercise_id, workout_session__user=request.user)
+    # We order the set numbers and then get the last one which is going to be the highest number.
+    # Renamed for clarity - good practice.
+    last_set = ExerciseDetail.objects.filter(exercise=exercise).order_by('sets').last()
+    # If theres no set_num this means it must be the first set so equate the 'sets' to 1.
+    # Or else, add one to the set_num which is the set number of the last set.
+    if not last_set:
+        set_num = 1
+    else:
+        set_num = last_set.sets + 1
+
     if request.method == 'POST':
         form = DetailsForm(request.POST)
         if form.is_valid():
             exercise_detail = form.save(commit=False)
             exercise_detail.exercise = exercise
-            # Adding some new logic for set info. We want set number to be assigned.
-            # set_num represents the chronological set number in the session of that particular exercise.
-            # We order the set numbers and then get the last one which is going to be the highest number.
-            set_num = ExerciseDetail.objects.filter(exercise=exercise).order_by('sets').last()
-            # If theres no set_num this means it must be the first set so equate the 'sets' to 1.
-            # Or else, add one to the set_num which is the set number of the last set.
-            if not set_num:
-                exercise_detail.sets = 1
-            else:
-                exercise_detail.sets = set_num.sets + 1
+            exercise_detail.sets = set_num
             exercise_detail.save()
             return redirect('detail_view', session_id=exercise.workout_session_id, exercise_id=exercise_id)
     else:
         form = DetailsForm()
 
     exercise_details = exercise.details.all()
-    return render(request, 'gymapp/set_info.html', {'exercise': exercise, 
-                                                    'exercise_details': exercise_details, 'form': form})
+    return render(request, 'gymapp/set_info.html', 
+                  {'exercise': exercise, 
+                   'exercise_details': exercise_details, 
+                   'form': form,
+                   'set_num': set_num,
+                   'session_id': exercise.workout_session_id,
+                   }
+                   )
+# Indent levels are for readability as this is a long line.
