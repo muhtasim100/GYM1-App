@@ -14,4 +14,6 @@ urlpatterns = [
     path('session/<int:session_id>/exercises/', views.exercises_done, name='exercises_done'),
     path('exercise/<int:exercise_id>/set_info/', views.set_info, name='set_info'),
     path('session/<int:session_id>/exercise/<int:exercise_id>/details/', views.detail_view, name='detail_view'),
+    path('delete_sets/', views.delete_sets, name='delete_sets'),
+
 ]

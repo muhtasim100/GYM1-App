@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm, DetailsForm, Exercise, ExerciseDetail
 from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth.decorators import login_required
 from .models import WorkoutSession
@@ -144,3 +145,9 @@ def set_info(request, exercise_id):
                    }
                    )
 # Indent levels are for readability as this is a long line.
+
+@require_POST
+def delete_sets(request):
+    selected_sets = request.POST.getlist('selected_sets')
+    ExerciseDetail.objects.filter(id__in=selected_sets).delete()
+    return redirect('detail_view', session_id=exercise.workout_session_id, exercise_id=exercise_id)

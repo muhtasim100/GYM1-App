@@ -23,29 +23,33 @@
                 </a>
                 <img src="{% static 'gymapp/images/delete.svg' %}" alt="Delete" class="del-btn" id="toggle-delete">
             </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th class="checkbox-column">Select</th>
-                        <th>Set Number</th>
-                        <th>Reps</th>
-                        <th>Weight</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for set in set_details %}
-                    <tr>
-                        <td class="checkbox-column">
-                            <input type="checkbox" name="selected_sets" value="{{ set.id }}">
-                        </td>
-                        <td>{{ set.sets }}</td>
-                        <td>{{ set.reps }}</td>
-                        <td>{{ set.weight }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <form id="delete-form" method="POST" action="{% url 'delete_sets' %}">
+                {% csrf_token %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="checkbox-column">Select</th>
+                            <th>Set Number</th>
+                            <th>Reps</th>
+                            <th>Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for set in set_details %}
+                        <tr>
+                            <td class="checkbox-column">
+                                <input type="checkbox" name="selected_sets" value="{{ set.id }}">
+                            </td>
+                            <td>{{ set.sets }}</td>
+                            <td>{{ set.reps }}</td>
+                            <td>{{ set.weight }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <img src="{% static 'gymapp/images/confirm.svg' %}" alt="Confirm Delete" 
+                id="confirm-delete" style="display: none; cursor: pointer;">
+            </form>
         </div>
 
         {% block javascript %}

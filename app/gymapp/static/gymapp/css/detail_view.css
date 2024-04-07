@@ -80,9 +80,9 @@ th, td {
     vertical-align: middle; 
 }
 
-/* .form-group {
-    margin-top: 2vh;
-} */
+.controls a, .controls img {
+    margin: 3px;
+}
 
 .checkbox-column {
     display: none;
