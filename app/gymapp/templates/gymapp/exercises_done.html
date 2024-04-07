@@ -21,31 +21,23 @@
             <img src="{% static 'gymapp/images/add_exercise.svg' %}" alt="Add Exercise" class="add-ex">
         </a>
     </div>
+
+    {% if exercises %}
     <div class="exercise-list">
-        {% if exercises %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Exercise Name</th>
-                    <th>Info</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for exercise in exercises %}
-                <tr>
-                    <td>{{ exercise.get_name_display }}</td>
-                    <td>
-                        <a href="{% url 'detail_view' session.id exercise.id %}">
-                            <img src="{% static 'gymapp/images/info.svg' %}" alt="View Details" class="info-icon">
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        <p>No exercises logged for this session yet.</p>
-        {% endif %}
+        {% for exercise in exercises %}
+        <div class="exercise-card">
+            <div class="exercise-name">{{ exercise.get_name_display }}</div>
+            <div class="info">
+                <a href="{% url 'detail_view' session.id exercise.id %}">
+                    <img src="{% static 'gymapp/images/info.svg' %}" alt="View Details" class="info-icon">
+                </a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
+    {% else %}
+    <p>No exercises logged for this session yet.</p>
+    {% endif %}
+
 </div>
 {% endblock %}

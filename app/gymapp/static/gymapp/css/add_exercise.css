@@ -106,3 +106,12 @@ input, button, select, textarea {
 .form-group {
     margin-top: 15px;
 }
+
+.go-back {
+    padding: 1%;
+    position: absolute;
+    z-index: 100;
+    top: 10px;
+    left: 15px;
+    margin: 1%;
+}

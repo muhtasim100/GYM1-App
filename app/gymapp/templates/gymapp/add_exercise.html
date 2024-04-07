@@ -10,6 +10,12 @@
 
 {% block content %}
 <body>
+    <div class="go-back">
+        <a href="{% url 'exercises_done' session.id %}">
+            <img src="{% static 'gymapp/images/back.svg' %}" alt="Go Back" class="back-btn">
+        </a>
+    </div>
+    
     <div class="form-container">
         <h1>Add An Exercise</h1>
         <form method="post" action="{% url 'add_exercise' session.id%}">
