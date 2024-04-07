@@ -1,5 +1,9 @@
 body {
     background-color: black;
+    min-height: 100vh;
+    padding-bottom: 20vh;
+    box-sizing: border-box; 
+    margin-bottom: 0;
 }
 
 .navbar {
