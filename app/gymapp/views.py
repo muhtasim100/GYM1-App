@@ -17,9 +17,6 @@ def base(request):
 def home(request):
     return render(request,'gymapp/home.html', {'user': request.user})
 
-# def tracker(request):
-#     return render(request,'gymapp/tracker.html')
-
 def register(request):
     if request.method == 'POST':
         form = RegisterUser(request.POST)
@@ -87,13 +84,13 @@ def detail_view(request, session_id, exercise_id):
     # Gets the specific workout session clicked on by the user and the specific exercise.
     session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
     exercise = get_object_or_404(Exercise, pk=exercise_id)
-    set_details = exercise.details.all()  # Assuming 'details' is the related_name for ExerciseDetail
+    set_details = exercise.details.all() 
     return render(request, 'gymapp/detail_view.html', {'session': session, 'exercise': exercise,
                                                         'set_details': set_details,})
 
 @login_required
 def exercises_done(request, session_id):
-    # Retrieve the session by ID and ensure it belongs to the current user
+    # Retrieve the session by ID and ensure it belongs to the current user.
     session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
     
     if request.method == 'POST':
@@ -106,7 +103,7 @@ def exercises_done(request, session_id):
     else:
         form = ExerciseForm()
 
-    # Pass existing exercises for this session and the form for adding new exercises to the template
+    # Pass existing exercises for this session and the form for adding new exercises to the template.
     exercises = session.exercises.all()
     return render(request, 'gymapp/exercises_done.html', {'session': session, 'exercises': exercises,
                                                            'form': form})
