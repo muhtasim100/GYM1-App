@@ -89,5 +89,6 @@ th, td {
 }
 
 .selected-row {
-    background-color: grey;
+    /* display: none; */
+    background-color: #B1B1B1;
 }
