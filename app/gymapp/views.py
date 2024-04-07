@@ -144,7 +144,17 @@ def set_info(request, exercise_id):
 # Indent levels are for readability as this is a long line.
 
 @require_POST
+@login_required
 def delete_sets(request):
     selected_sets = request.POST.getlist('selected_sets')
-    ExerciseDetail.objects.filter(id__in=selected_sets).delete()
-    return redirect('detail_view', session_id=exercise.workout_session_id, exercise_id=exercise_id)
+    if selected_sets:
+        # Retrieve an exercise id from the first selected set.
+        # Line 153 by ChatGPT to fix error.
+        exercise_id = ExerciseDetail.objects.filter(id=selected_sets[0]).values_list('exercise_id', flat=True).first()
+        if exercise_id:
+            exercise = get_object_or_404(Exercise, pk=exercise_id)
+            session_id = exercise.workout_session_id
+            # Executes delete.
+            ExerciseDetail.objects.filter(id__in=selected_sets).delete()
+            # Redirect to detail_view with the defined session_id and exercise_id.
+            return redirect('detail_view', session_id=session_id, exercise_id=exercise_id)

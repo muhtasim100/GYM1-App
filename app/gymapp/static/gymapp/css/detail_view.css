@@ -52,7 +52,7 @@ table {
     width: 95vw;
     margin-top: 30px;
     background-color: #D9D9D9;
-    border-radius: 3%;
+    border-radius: 5%;
     border-collapse: collapse;
 }
 
@@ -89,7 +89,6 @@ th, td {
 }
 
 .selected-row {
-    /* display: none; */
     background-color: #B1B1B1;
 }
 

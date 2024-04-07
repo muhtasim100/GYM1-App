@@ -8,12 +8,15 @@
 {% endblock extra_css %}
 
 {% block content %}
+<div class="go-back">
+    <a href="{% url 'tracker' %}">
+        <img src="{% static 'gymapp/images/back.svg' %}" alt="Go Back" class="back-btn">
+    </a>
+</div>
+
 <div class="session-details">
     <h1>EXERCISES<br>{{ session.date|date:"d-m-Y" }}</h1>
     <div class="btn-container"> 
-        <a href="{% url 'tracker' %}">
-            <img src="{% static 'gymapp/images/back.svg' %}" alt="Go Back" class="back-btn">
-        </a>
         <a href="{% url 'add_exercise' session.id %}">
             <img src="{% static 'gymapp/images/add_exercise.svg' %}" alt="Add Exercise" class="add-ex">
         </a>
