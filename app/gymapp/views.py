@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm, DetailsForm, Exercise, ExerciseDetail
+from django.db.models import Max
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth import login as auth_login 
@@ -74,6 +75,8 @@ def add_exercise(request, session_id):
         if form.is_valid():
             new_exercise = form.save(commit=False)
             new_exercise.workout_session = session
+            last_exercise_order = session.exercises.aggregate(Max('order'))['order__max']
+            new_exercise.order = (last_exercise_order or 0) + 1
             new_exercise.save()
             return redirect('detail_view', session_id=session.id, exercise_id=new_exercise.id)
     else:
@@ -110,8 +113,10 @@ def exercises_done(request, session_id):
                                                            'form': form})
 
 @login_required
-def set_info(request, exercise_id):
-    exercise = get_object_or_404(Exercise, pk=exercise_id, workout_session__user=request.user)
+def set_info(request, session_id, exercise_id):
+    # exercise = get_object_or_404(Exercise, pk=exercise_id, workout_session__user=request.user)
+    session = get_object_or_404(WorkoutSession, pk=session_id, user=request.user)
+    exercise = get_object_or_404(Exercise, pk=exercise_id, workout_session=session)
     # We order the set numbers and then get the last one which is going to be the highest number.
     # Renamed for clarity - good practice.
     last_set = ExerciseDetail.objects.filter(exercise=exercise).order_by('sets').last()
@@ -140,8 +145,7 @@ def set_info(request, exercise_id):
                    'form': form,
                    'set_num': set_num,
                    'session_id': exercise.workout_session_id,
-                   }
-                   )
+    })
 # Indent levels are for readability as this is a long line.
 
 @require_POST

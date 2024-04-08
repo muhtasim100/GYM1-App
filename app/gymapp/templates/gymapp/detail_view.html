@@ -15,9 +15,15 @@
     </div>
 
     <div class="details-view">
-        <h1>{{ session.date|date:"d-m-Y"  }} <br> {{ exercise.get_name_display }}</h1>
+        <h1>{{ session.date|date:"d-m-Y"  }} <br>
+            {% if exercise.name == "OT" %}
+                {{ exercise.custom_name }}
+             {% else %}
+                {{ exercise.get_name_display }}
+             {% endif %}
+        </h1>
         <div class="controls">
-            <a href="{% url 'set_info' session.id %}">
+            <a href="{% url 'set_info' session.id exercise.id %}">
                 <img src="{% static 'gymapp/images/add.svg' %}" alt="Add" class="add-btn">
             </a>
             <img src="{% static 'gymapp/images/delete.svg' %}" alt="Delete" class="del-btn" id="toggle-delete">

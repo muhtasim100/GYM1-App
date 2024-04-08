@@ -91,6 +91,7 @@ body, html {
     color: black; 
     font-family: 'Notable';
     width: 350px;
+    box-shadow: 3px 4px #817D7D;
 }
 
 .info {

@@ -61,7 +61,11 @@ class Exercise(models.Model):
     workout_session = models.ForeignKey(WorkoutSession, on_delete=models.CASCADE, related_name='exercises')
     name = models.CharField(max_length=100, choices = EXERCISE_CHOICES, default='BP') # Pre made list exercises.
     custom_name = models.CharField(max_length=50, blank=True, null=True)  # User can specify if 'Other' is selected.
-    
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        
     def __str__(self):
         if self.name == 'OT':
             return self.custom_name

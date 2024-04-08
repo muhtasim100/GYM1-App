@@ -87,7 +87,7 @@ class ExerciseForm(forms.ModelForm):
         model = Exercise
         fields = ['name', 'custom_name']
         widgets = {
-            'custom_name': forms.NumberInput(attrs={'placeholder': 'Enter Exercise Name'}),
+            'custom_name': forms.TextInput(attrs={'placeholder': 'Enter Exercise Name'}),
         }
 
     def __init__(self, *args, **kwargs):

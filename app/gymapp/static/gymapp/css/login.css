@@ -142,7 +142,15 @@ ul.m-0 {
     display: none;
 }
 
+.errorlist.nonfield {
+    margin-left: 0; 
+    padding-left: 0; 
+}
 
+.errorlist.nonfield ul {
+    margin-left: 0; 
+    padding-left: 0; 
+}
 
 @media screen and (max-height: 736px) {
     .error-field {

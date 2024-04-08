@@ -26,7 +26,13 @@
     <div class="exercise-list">
         {% for exercise in exercises %}
         <div class="exercise-card">
-            <div class="exercise-name">{{ exercise.get_name_display }}</div>
+            <div class="exercise-name">
+                {% if exercise.name == "OT" %}
+                    {{ exercise.custom_name }}
+                {% else %}
+                    {{ exercise.get_name_display }}
+                {% endif %}
+            </div>
             <div class="info">
                 <a href="{% url 'detail_view' session.id exercise.id %}">
                     <img src="{% static 'gymapp/images/info.svg' %}" alt="View Details" class="info-icon">
