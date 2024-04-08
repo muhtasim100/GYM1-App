@@ -20,9 +20,6 @@
             <a href="{% url 'set_info' session.id %}">
                 <img src="{% static 'gymapp/images/add.svg' %}" alt="Add" class="add-btn">
             </a>
-            <a >
-                <img src="{% static 'gymapp/images/edit.svg' %}" alt="Edit" class="edit-btn">
-            </a>
             <img src="{% static 'gymapp/images/delete.svg' %}" alt="Delete" class="del-btn" id="toggle-delete">
         </div>
         <form id="delete-form" method="POST" action="{% url 'delete_sets' %}">
@@ -42,7 +39,11 @@
                         <td class="checkbox-column">
                             <input type="checkbox" name="selected_sets" value="{{ set.id }}">
                         </td>
-                        <td>{{ set.sets }}</td>
+                        <td>{{ set.sets }} <a href="{% url 'edit_set' session_id=session.id set_id=set.id %}">
+                            <img src="{% static 'gymapp/images/pencil.svg' %}" alt="Edit" class="edit-pen">
+                            </a>
+                        </td>
+                        
                         <td>{{ set.reps }}</td>
                         <td>{{ set.weight }}</td>
                     </tr>

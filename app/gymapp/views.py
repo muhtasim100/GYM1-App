@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import WorkoutSession
 from django.shortcuts import render, get_object_or_404 
 # Retrieve an object or return a "404 error" if it doesn't exis.
@@ -158,3 +159,28 @@ def delete_sets(request):
             ExerciseDetail.objects.filter(id__in=selected_sets).delete()
             # Redirect to detail_view with the defined session_id and exercise_id.
             return redirect('detail_view', session_id=session_id, exercise_id=exercise_id)
+
+@login_required
+def edit_set(request, session_id, set_id):
+    # Influenced by https://codewithstein.com/how-to-use-the-messages-framework-django-tutorial/
+    set_detail = get_object_or_404(ExerciseDetail, pk=set_id, 
+                                   exercise__workout_session__id=session_id, exercise__workout_session__user=request.user)
+    set_num = set_detail.sets
+    # For the display on edit_set.
+
+    if request.method == 'POST':
+        form = DetailsForm(request.POST, instance=set_detail)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Set updated successfully!') # REMEMBER TO TEST AND CHECK!!
+            return redirect('detail_view', session_id=session_id, exercise_id=set_detail.exercise.id)
+    else:
+        form = DetailsForm(instance=set_detail)
+
+    return render(request, 'gymapp/edit_set.html', {
+        'form': form, 
+        'set': set_detail, 
+        'set_num': set_num, 
+        'session_id': session_id,
+        'exercise': set_detail.exercise
+    })

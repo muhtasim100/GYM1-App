@@ -1,0 +1,25 @@
+{% extends "gymapp/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Edit Set{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/set_info.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<body>
+    
+
+    <div class="edit-set">
+        <h1>{{ set.exercise.get_name_display }} - Set {{ set_num }}<br>EDIT</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </form>
+        <a href="{% url 'detail_view' session_id=session_id exercise_id=set.exercise.id %}">Back to details</a>
+    </div>
+</body>
+{% endblock %}
+
