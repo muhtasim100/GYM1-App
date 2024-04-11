@@ -1,20 +1,25 @@
-// JS for exercise form. Handling name and custom name.
-$(document).ready(function(){
-     // Hide custom name input and label to start with.
-    $('#id_custom_name').hide();
-    $('label[for="id_custom_name"]').hide();
+$(document).ready(function() {
+    // Hide custom_name input and label.
+    $('#id_custom_name').addClass('hidden');
+    $('label[for="id_custom_name"]').addClass('hidden'); 
 
-    // change is the event listener that looks for the dropdown change.
-    $('#id_name').change(function(){
-        // Checks if other is selected from dropdown list.
-        if($(this).val() == 'OT'){
-            $('#id_custom_name').show(); // Show custom name input field and label.
-            $('label[for="id_custom_name"]').show();
-
-        } else {
-            $('#id_custom_name').hide().val(''); // Hide custom name input and makes the input an empty string.
-            $('label[for="id_custom_name"]').hide(); // Hides the label.
-
+    // Visibility of custom_name.
+    function toggleCustomNameVisibility() {
+        if ($('#id_name').val() == 'OT') {
+            // Used fadeIn for animation if 'Other' is selected.
+            $('#id_custom_name').hide().removeClass('hidden').fadeIn(300);
+            $('label[for="id_custom_name"]').hide().removeClass('hidden').fadeIn(300);
+        } 
+        else {
+            // Hide and clear custom_name if it's not 'Other'.
+            $('#id_custom_name').fadeOut(300, function() {
+                $(this).addClass('hidden').val('');
+            });
+            $('label[for="id_custom_name"]').fadeOut(300, function() {
+                $(this).addClass('hidden');
+            });
         }
-    });
+    }
+    toggleCustomNameVisibility(); 
+    $('#id_name').change(toggleCustomNameVisibility);
 });

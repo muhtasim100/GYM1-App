@@ -73,19 +73,19 @@ body {
     border-color: #e6c300;
 } */
 
-
 .btn-primary {
+    margin-top: 70px;
     position: relative;
-    padding: 15px 45px;
+    padding: 12px 80px;
     width: auto; 
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    border-radius: 5px;
+    font-size: 1.1rem;
+    /* border-radius: 10px; */
     border: 2px solid #FFD700;
-    background-color: black; 
-    color: #FFD700; 
+    background-color: #FFD700; 
+    color: black; 
     cursor: pointer;
     outline: none;
     transition: 200ms;
@@ -98,7 +98,6 @@ body {
 }
 
 .btn-primary:focus {
-   
     color: transparent;
     outline: none;
     border: 2px solid transparent;
@@ -108,16 +107,23 @@ body {
     padding: 25px 25px;
     border-left: 2px solid #FFD700; 
     animation: spin 2s 500ms forwards;
+    background-color: black;
 }
 
 @keyframes spin {
+    0% {
+        background-color: black; 
+    }
+
     80% {
         border: 2px solid transparent;
         border-left: 2px solid green;
+        background-color: black;
     }
     100% {
         transform: rotate(720deg);
         border: 2px solid green;
+        background-color: black;
     }
 }
 
@@ -128,6 +134,7 @@ button:focus i {
 @keyframes check {
     to {
         color: green;
+        background-color: black;
     }
 }
 
@@ -138,7 +145,8 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 40vh;
+    /* min-height: 40vh; */
+    margin-top: 40px;
     font-family: 'Notable';
     margin: auto;
 }
@@ -174,5 +182,27 @@ input, button, select, textarea {
     top: 10px;
     left: 15px;
     margin: 1%;
+}
+
+.requiredField, .label {
+    margin-bottom: 2px;
+    font-size: large;
+}
+
+/* Animation for hidden element */
+.form-field {
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.hidden {
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+#id_custom_name, label[for="id_custom_name"] {
+    display: none;
 }
 
