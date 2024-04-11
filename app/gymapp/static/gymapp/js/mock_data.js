@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     
     const leaderboardContainer = document.querySelector('.leaderboard-container');
-
     leaderboardData.sort((a, b) => b.attendance - a.attendance); 
+
     leaderboardData.forEach((user, index) => {
         const leaderboardRow = document.createElement('div');
-        leaderboardRow.className = 'leaderboard-row';
+        leaderboardRow.className = 'leaderboard-row leaderboard-card'; // Use both classes
         
         const userInfo = document.createElement('div');
         userInfo.className = 'user-info';
