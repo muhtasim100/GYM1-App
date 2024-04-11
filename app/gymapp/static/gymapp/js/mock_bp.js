@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const leaderboardData = [
-        { username: "Adam", attendance: 13 },
-        { username: "Baker", attendance: 9 },
-        { username: "Cindy", attendance: 15 },
-        { username: "Darren", attendance: 12 },
-        { username: "Emmanuel", attendance: 9 },
-        { username: "Farhad", attendance: 15 },
-        { username: "Gary", attendance: 12 },
-        { username: "Hamm", attendance: 10 },
-        { username: "Isabel", attendance: 1 },
-        { username: "Jaheim", attendance: 2 },
-        { username: "Kiren", attendance: 8 },
-        { username: "Luke", attendance: 20 },
+        { username: "Adam", bench: 130 },
+        { username: "Baker", bench: 90 },
+        { username: "Cindy", bench: 45 },
+        { username: "Darren", bench: 120 },
+        { username: "Emmanuel", bench: 100 },
+        { username: "Farhad", bench: 75 },
+        { username: "Gary", bench: 60 },
+        { username: "Hamm", bench: 60 },
+        { username: "Isabel", bench: 40 },
+        { username: "Jaheim", bench: 55 },
+        { username: "Kiren", bench: 60 },
+        { username: "Luke", bench: 60 },
     ];
-        // Sort the data by attendance descending.
-        leaderboardData.sort((a, b) => b.attendance - a.attendance);
+        // Sort the data by benchpress descending.
+        leaderboardData.sort((a, b) => b.bench - a.bench);
     
         // Get the top 5 users.
         const topUsers = leaderboardData.slice(0, 5);
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const userScoreDiv = document.getElementById(`user-score-${index + 1}`);
             
             userInfoDiv.textContent = `${index + 1}. ${user.username}`;
-            userScoreDiv.textContent = user.attendance;
+            userScoreDiv.textContent = user.bench;
     
             // Apply styling for the top user only.
             if (index === 0) { // Check if it's the top user.

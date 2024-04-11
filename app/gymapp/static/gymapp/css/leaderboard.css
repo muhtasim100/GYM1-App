@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'Notable';
+    src: url(../fonts/Notable/Notable-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira-Regular';
+    src: url('../fonts/Fira_Code/FiraCode-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira-Bold';
+    src: url('../fonts/Fira_Code/FiraCode-VariableFont_wght.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend_Peta/LexendPeta-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    overflow-y: auto; 
+}
+  
+.leaderboard {
+        display: flex;
+        position: relative;
+        top: 5vh; 
+        left: 0; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+}
+
+.leaderboard h1 {
+    font-family: 'Notable';
+    /* font-family: 'Lexend-Regular'; */
+    font-size: clamp(36px, 6vw, 30px); 
+    text-align: center;
+    color: #FFD700;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #D9D9D9;
+    color: black;
+    border-radius: 10px;
+    width: 75vw;
+    padding: 0.1em; 
+    margin-bottom: 35px;
+    box-shadow: 3px 4px gray;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.leaderboard h2 {
+    font-family: 'Notable';
+    font-size: clamp(20px, 6vw, 32px); 
+    text-align: center;
+    color: black;
+}
+
+.leaderboard-container{
+    margin-top: 5vh;
+    text-decoration: none;
+
+}
+
+.leaderboard-container a {
+    text-decoration: none; 
+}

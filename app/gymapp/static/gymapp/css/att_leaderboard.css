@@ -18,14 +18,22 @@
     font-weight: bold;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend_Peta/LexendPeta-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body, html {
     overflow-y: auto; 
 }
   
-.leaderboard{
+.leaderboard {
         display: flex;
         position: relative;
-        top: 10vh; 
+        top: 5vh; 
         left: 0; 
         flex-direction: column;
 }
@@ -51,13 +59,13 @@ body, html {
 .user-info {
     background-color: #D9D9D9; 
     border-radius: 12px;
-    padding: 1em; 
+    padding: 1.3em; 
     margin-bottom: 20px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     color: black; 
-    font-family: 'Notable';
+    font-family: 'Lexend-Regular';
     width: 500px;
     flex: 1; 
     margin-right: auto; 
@@ -66,18 +74,19 @@ body, html {
 .user-score {
     background-color: #D9D9D9; 
     border-radius: 12px;
-    padding: 1em; 
+    padding: 1.3em; 
     margin-bottom: 20px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     color: black; 
-    font-family: 'Notable';
+    font-family: 'Lexend-Regular';
     width: 80px;
     margin-left: 20px; 
 }
 
 .leaderboard-container {
+    margin-top: 5vh;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -88,4 +97,23 @@ body, html {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+}
+
+.top-user-info {
+    background-color: #FFD700; 
+    color: black; 
+}
+
+.top-user-score {
+    background-color: #FFD700; 
+    color: black; 
+}
+
+.go-back {
+    padding: 1%;
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    left: 15px;
+    margin: 1%;
 }

@@ -137,11 +137,12 @@ input, button, select, textarea {
 }
 
 .go-back {
-    align-items: flex-start;
+    padding: 1%;
     position: absolute;
     z-index: 100;
-    top: 2vh;
-    left: 4vw;
+    top: 15px;
+    left: 15px;
+    margin: 1%;
 }
 
 .requiredField {

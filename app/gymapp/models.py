@@ -79,3 +79,11 @@ class ExerciseDetail(models.Model):
 
     def __str__(self):
         return f"{self.sets} sets of {self.reps} reps at {self.weight}kg/lb."
+    
+
+class Post(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    

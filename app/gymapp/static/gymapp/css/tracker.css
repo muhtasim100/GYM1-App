@@ -38,7 +38,8 @@
 }
 
 .tracker h1 {
-    font-family: 'Lexend-Regular';
+    /* font-family: 'Lexend-Regular'; */
+    font-family: 'Notable';
     font-size: clamp(40px, 8vw, 32px); 
     text-align: center;
     color: #FFD700;

@@ -6,6 +6,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
         <link href="{% static 'gymapp/css/login.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <title>Login</title>
     </head>
     
@@ -14,9 +15,13 @@
             <h1>Login</h1>
         </div>
 
-        <form method="post" action="{% url 'login' %}">
+        <form method="post" action="{% url 'login' %}" id="LoginForm">
             {% csrf_token %}
             {% crispy form %}
+            <button id= "btn" class="btn-primary morphing-button" type="submit" onmousedown="mouseclick.play()">
+                Login
+                <i class="fa-solid fa-check"></i>
+            </button>
 
             {% if form.non_field_errors %}
             <div class="error-msg">
@@ -37,6 +42,12 @@
             {% endif %}
 
         </form>
+        {% block javascript %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <!-- Using CDN due to download issues. -->
+        <script src="{% static 'gymapp/js/submit-login.js' %}" type="text/javascript"></script>
+        <script src="{% static 'gymapp/js/audio.js' %}" type="text/javascript"></script>
+        {% endblock %}
     </body>
     
 </html>

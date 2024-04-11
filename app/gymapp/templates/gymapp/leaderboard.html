@@ -1,0 +1,44 @@
+{% extends "gymapp/base.html" %}
+{% load static %}
+
+{% block title %}Leaderboard Home{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/leaderboard.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<body>
+    <div class="leaderboard">
+        <h1>LEADERBOARDS</h1>
+        <div class="leaderboard-container">
+            <a href="{% url 'att_leaderboard' %}">
+                <div class="card" id="attendance">
+                    <h2>ATTENDANCE</h2>
+                </div>
+            </a>
+
+            <div class="card" id="bench">
+                <a href="{% url 'bench_leaderboard' %}">
+                <h2>BENCH PRESS</h2>
+                </a>
+            </div>
+
+            <div class="card" id="squats">
+                <a href="{% url 'squat_leaderboard' %}">
+                <h2>SQUATS</h2>
+                </a>
+            </div>
+
+            <div class="card" id="deadlift">
+                <a href="{% url 'dead_leaderboard' %}">
+                <h2>DEADLIFT</h2>
+                </a>
+            </div>
+        </div>
+        
+    </div>
+    {% block javascript %}
+    {% endblock %}
+</body>
+{% endblock %}

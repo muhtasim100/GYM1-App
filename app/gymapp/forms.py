@@ -1,4 +1,4 @@
-from .models import CustomUser, WorkoutSession, Exercise, ExerciseDetail
+from .models import CustomUser, WorkoutSession, Exercise, ExerciseDetail, Post
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Div, Field
@@ -60,7 +60,6 @@ class LoginForm(AuthenticationForm):
         self.helper.layout = Layout(
             'username',
             'password',
-            Submit('submit', 'Login', css_class='btn-primary')
         )
 
 class WorkoutForm(forms.ModelForm):
@@ -129,3 +128,11 @@ class DetailsForm(forms.ModelForm):
             'weight',
             # Submit('submit', 'Save', css_class='btn-primary')
         )
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['message']
+        widgets = {
+            'message': forms.TextInput(attrs={'placeholder': 'Enter message...'}),
+        }
