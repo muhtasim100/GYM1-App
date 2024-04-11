@@ -13,25 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
         { username: "K", attendance: 8 },
         { username: "L", attendance: 20 },
     ];
+        // Sort the data by attendance descending.
+        leaderboardData.sort((a, b) => b.attendance - a.attendance);
     
-    const leaderboardContainer = document.querySelector('.leaderboard-container');
-    leaderboardData.sort((a, b) => b.attendance - a.attendance); 
-
-    leaderboardData.forEach((user, index) => {
-        const leaderboardRow = document.createElement('div');
-        leaderboardRow.className = 'leaderboard-row leaderboard-card'; // Use both classes
-        
-        const userInfo = document.createElement('div');
-        userInfo.className = 'user-info';
-        userInfo.innerHTML = `<strong>${index + 1}. ${user.username}</strong>`;
-        
-        const userScore = document.createElement('div');
-        userScore.className = 'user-score';
-        userScore.textContent = user.attendance;
-        
-        leaderboardRow.appendChild(userInfo);
-        leaderboardRow.appendChild(userScore);
-        
-        leaderboardContainer.appendChild(leaderboardRow);
+        // Get the top 5 users.
+        const topUsers = leaderboardData.slice(0, 5);
+    
+        // Loop through the top 5 users and populate the divs.
+        topUsers.forEach((user, index) => {
+            document.getElementById(`user-rank-${index + 1}`).textContent =`${index + 1}. ${user.username}`;
+            document.getElementById(`user-score-${index + 1}`).textContent = user.attendance;
+        });
     });
-});
+    

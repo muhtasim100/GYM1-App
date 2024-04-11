@@ -9,11 +9,32 @@
 
 {% block content %}
 <body>
-    <div class="leaderboard-container">
+    <div class="leaderboard">
         <h1>Attendance 2024</h1>
-        <div id="leaderboard">
-            <!-- js data in here -->
+        <div class="leaderboard-container">
+            <div class="leaderboard-row">
+                <div id="user-rank-1" class="user-info"></div>
+                <div id="user-score-1" class="user-score"></div>
+            </div>
+            <div class="leaderboard-row">
+                <div id="user-rank-2" class="user-info"></div>
+                <div id="user-score-2" class="user-score"></div>
+            </div>
+            <div class="leaderboard-row">
+                <div id="user-rank-3" class="user-info"></div>
+                <div id="user-score-3" class="user-score"></div>
+            </div>
+            
+            <div class="leaderboard-row">
+                <div id="user-rank-4" class="user-info"></div>
+                <div id="user-score-4" class="user-score"></div>
+            </div>
+            <div class="leaderboard-row">
+                <div id="user-rank-5" class="user-info"></div>
+                <div id="user-score-5" class="user-score"></div>
+            </div>
         </div>
+        
     </div>
     {% block javascript %}
         <script src="{% static 'gymapp/js/mock_data.js' %}" type="text/javascript"></script>
