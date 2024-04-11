@@ -18,6 +18,14 @@
     font-weight: bold;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend_Peta/LexendPeta-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body, html {
     overflow-y: auto; 
 }
@@ -25,7 +33,7 @@ body, html {
 .session-details {
     display: flex;
     position: relative;
-    top: 10vh; 
+    top: 5vh; 
     left: 0; 
     width: auto; 
     justify-content: center;
@@ -36,19 +44,20 @@ body, html {
 }
 
 .session-details h1 {
-    font-family: 'Notable';
-    font-size: clamp(20px, 6vw, 32px); 
+    font-family: 'Lexend-Regular';
+    font-size: clamp(40px, 8vw, 32px); 
     text-align: center;
     color: #FFD700;
     margin-bottom: 30px;
 }
 
 .session-details p {
-    font-family: 'Notable';
+    font-family: 'Lexend-Regular';
     font-size: clamp(20px, 6vw, 32px); 
     text-align: center;
     color: white;
-    margin-bottom: 30px;
+    margin-top: 15vh;
+
 }
 
 .details-icon {
@@ -73,11 +82,25 @@ body, html {
     top: 10px;
     left: 15px;
     margin: 1%;
-
 }
 
 .exercise-list {
-    margin-top: 20px;
+    text-decoration: none;
+    margin-top: 2vh;
+}
+
+.exercise-list a{
+    text-decoration: none;
+}
+
+.exercise-list h2 {
+    color: #D9D9D9;
+    text-align: center;
+    font-family: 'Lexend-Regular';
+    /* font-family: 'Fira-Regular'; */
+    font-size: small;
+
+
 }
 
 .exercise-card {
@@ -90,11 +113,24 @@ body, html {
     justify-content: center; 
     color: black; 
     font-family: 'Notable';
-    width: 350px;
+    width: 75vw;
     box-shadow: 3px 4px #817D7D;
 }
 
 .info {
     margin-left: 10px;
     margin-top: 5px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+}
+
+.delete-card {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    margin-left: 15px;
+    margin-bottom: 15px; 
 }

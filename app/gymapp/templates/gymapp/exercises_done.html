@@ -1,7 +1,7 @@
 {% extends "gymapp/base.html" %}
 {% load static %}
 
-{% block title %}Session Details{% endblock %}
+{% block title %}Exercises{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'gymapp/css/exercises_done.css' %}">
@@ -15,7 +15,7 @@
 </div>
 
 <div class="session-details">
-    <h1>EXERCISES<br>{{ session.date|date:"d-m-Y" }}</h1>
+    <h1>{{ session.workout_name }}<br>{{ session.date }}</h1>
     <div class="btn-container"> 
         <a href="{% url 'add_exercise' session.id %}">
             <img src="{% static 'gymapp/images/add_exercise.svg' %}" alt="Add Exercise" class="add-ex">
@@ -24,18 +24,23 @@
 
     {% if exercises %}
     <div class="exercise-list">
+        <h2>click to view details</h2>
         {% for exercise in exercises %}
-        <div class="exercise-card">
-            <div class="exercise-name">
-                {% if exercise.name == "OT" %}
-                    {{ exercise.custom_name }}
-                {% else %}
-                    {{ exercise.get_name_display }}
-                {% endif %}
-            </div>
-            <div class="info">
-                <a href="{% url 'detail_view' session.id exercise.id %}">
-                    <img src="{% static 'gymapp/images/info.svg' %}" alt="View Details" class="info-icon">
+        <div class="row">
+            <a href="{% url 'detail_view' session.id exercise.id %}">
+                <div class="exercise-card">
+                        <div class="exercise-name">
+                            {% if exercise.name == "OT" %}
+                                {{ exercise.custom_name }}
+                            {% else %}
+                                {{ exercise.get_name_display }}
+                            {% endif %}
+                        </div>
+                </div>
+            </a>
+            <div class="delete-card">
+                <a href="{% url 'delete_exercise' exercise.id %}" class="delete-url">
+                    <img src="{% static 'gymapp/images/x.svg' %}" alt="Delete Exercise" class="del-ex">
                 </a>
             </div>
         </div>

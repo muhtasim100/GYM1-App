@@ -6,6 +6,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'gymapp/css/set_info.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock extra_css %}
 
 {% block content %}
@@ -17,16 +18,27 @@
     </div>
 
     <div class="form-container">
-        <h1>{% if exercise.name == "OT" %}
+        <h1>How was your set?<br>{% if exercise.name == "OT" %}
             {{ exercise.custom_name }}
          {% else %}
             {{ exercise.get_name_display }}
-         {% endif %} - Set {{ set_num }}<br>How was your set?</h1>
-        <form method="post" action="{% url 'set_info' session_id exercise.id %}">
+         {% endif %} - Set {{ set_num }}</h1>
+        <form class="DetailsForm" method="post" action="{% url 'set_info' session_id exercise.id %}" id="DetailsForm">
             {% csrf_token %}
             {% crispy form %}
+            <button id= "btn" class="btn-primary morphing-button" type="submit" onmousedown="mouseclick.play()">
+                Save
+                <i class="fa-solid fa-check"></i>
+            </button>
         </form>
-    </div>    
+    </div> 
+    {% block javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <!-- Using CDN due to download issues. -->
+    <script src="{% static 'gymapp/js/submit-set.js' %}" type="text/javascript"></script>
+    <script src="{% static 'gymapp/js/audio.js' %}" type="text/javascript"></script>
+
+    {% endblock %}
 </body>
 {% endblock %}
 

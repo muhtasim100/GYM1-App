@@ -12,6 +12,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend_Peta/LexendPeta-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     color: #FFD700;
 }
@@ -73,6 +80,7 @@ body {
     border-color: #e6c300;
 } */
 
+/* From https://www.sitepoint.com/button-micro-interactions/#jitterybuttonmicrointeraction */
 .btn-primary {
     margin-top: 70px;
     position: relative;
@@ -148,7 +156,6 @@ form {
     /* min-height: 40vh; */
     margin-top: 40px;
     font-family: 'Notable';
-    margin: auto;
 }
 
 div {
@@ -160,6 +167,7 @@ div {
 
 .form-control {
     width: 100%;
+    height: 27px;
 }
 
 #id_name {
@@ -186,7 +194,7 @@ input, button, select, textarea {
 
 .requiredField, .label {
     margin-bottom: 2px;
-    font-size: large;
+    font-size: larger;
 }
 
 /* Animation for hidden element */
@@ -196,10 +204,10 @@ input, button, select, textarea {
 }
 
 .hidden {
+    opacity: 0;
     max-height: 0;
     margin: 0;
     padding: 0;
-    opacity: 0;
 }
 
 #id_custom_name, label[for="id_custom_name"] {

@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import JsonResponse
 from .models import WorkoutSession
 from django.shortcuts import render, get_object_or_404 
 # Retrieve an object or return a "404 error" if it doesn't exis.
@@ -193,3 +194,18 @@ def edit_set(request, session_id, set_id):
 @login_required
 def att_leaderboard(request):
     return render(request,'gymapp/att_leaderboard.html', {'user': request.user})
+
+@require_POST
+@login_required
+def delete_session(request):
+    session_id = request.POST.get('session_id')
+    if session_id:
+        session = get_object_or_404(WorkoutSession, id=session_id, user=request.user)
+        session.delete()
+    
+@login_required
+def delete_exercise(request, exercise_id):
+    exercise = get_object_or_404(Exercise, pk=exercise_id, workout_session__user=request.user)
+    session_id = exercise.workout_session_id  
+    exercise.delete()
+    return redirect('exercises_done', session_id=session_id)

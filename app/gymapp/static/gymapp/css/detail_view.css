@@ -19,10 +19,18 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend_Peta/LexendPeta-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 .details-view {
     display: flex;
     position: relative;
-    top: 10vh; 
+    top: 5vh; 
     left: 0; 
     width: auto; 
     justify-content: center;
@@ -31,20 +39,20 @@
 }
 
 .details-view h1 {
-    font-family: 'Notable';
-    font-size: clamp(20px, 6vw, 32px); 
+    font-family: 'Lexend-Regular';
+    font-size: clamp(40px, 8vw, 32px); 
     text-align: center;
     color: #FFD700;
     margin-bottom: 30px;
 }
 
-.details-view p {
+/* .details-view p {
     font-family: 'Notable';
     font-size: clamp(20px, 6vw, 32px); 
     text-align: center;
     color: white;
     margin-bottom: 30px;
-}
+} */
 
 table {
     color: black;

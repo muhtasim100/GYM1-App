@@ -1,6 +1,6 @@
 {% extends 'gymapp/base.html' %}
 {% load static %}
-{% block title %}Session Details{% endblock %}
+{% block title %}Details{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'gymapp/css/detail_view.css' %}">
@@ -15,12 +15,14 @@
     </div>
 
     <div class="details-view">
-        <h1>{{ session.date|date:"d-m-Y"  }} <br>
+        <h1>
             {% if exercise.name == "OT" %}
                 {{ exercise.custom_name }}
              {% else %}
                 {{ exercise.get_name_display }}
              {% endif %}
+             <br>
+             {{ session.date  }}
         </h1>
         <div class="controls">
             <a href="{% url 'set_info' session.id exercise.id %}">

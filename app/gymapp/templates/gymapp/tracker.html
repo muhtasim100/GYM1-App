@@ -23,22 +23,20 @@
             <table frame=void rules=rows>
                 <thead>
                     <tr>
-                        <th>Workout Name</th>
-                        <th>Date</th>
-                        <th>Info</th>
+                        <th>DATE</th>
+                        <th>WORKOUT NAME</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for session in sessions %}
-                    <tr>
-                        <td>{{ session.workout_name }}</td>
-                        <td>{{ session.date|date:"d-m-Y"  }}</td>
-                        <td>
-                            <a href="{% url 'exercises_done' session.id %}">
-                                <img src="{% static 'gymapp/images/info.svg' %}" alt="View details" class="details-icon">
-                            </a>
-                        </td>
-                    </tr>
+                        <tr class="session-row" data-session-id="{{ session.id }}">
+                                <td>{{ session.date|date:"d-m-Y"  }}</td>
+                                <td>{{ session.workout_name }}
+                                    <a href="{% url 'exercises_done' session.id %}">
+                                        <img src="{% static 'gymapp/images/info.svg' %}" alt="View details" class="details-icon">
+                                    </a>
+                                </td>
+                        </tr>   
                     {% endfor %}
                 </tbody>
             </table>
@@ -50,6 +48,51 @@
     {% block javascript %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
         <!-- Using CDN due to download issues. -->  
+
+    <script>
+        // From https://stackoverflow.com/questions/35426051/how-to-make-swipe-function-work-dynamically-on-a-table-row
+        // but changed a lot. I was forced to use ChatGPT to direct me as this was very difficult.
+        $(document).ready(function() {
+        $('.session-row').each(function() {
+        var startX, 
+            distX = 0, 
+            threshold = 150;
+
+        $(this).on('touchstart', function(e) {
+            var touchobj = e.touches[0];
+            startX = touchobj.pageX; 
+            distX = 0; 
+        });
+
+        $(this).on('touchmove', function(e) {
+            var touchobj = e.changedTouches[0];
+            distX = touchobj.pageX - startX; 
+        });
+
+        $(this).on('touchend', function(e) {
+            if (Math.abs(distX) >= threshold && distX < 0) { 
+                var sessionId = $(this).data('session-id');
+                $.ajax({
+                    url: '{% url "delete_session" %}',
+                    type: 'POST',
+                    data: {
+                        'session_id': sessionId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if(response.success) {
+                            $(this).fadeOut('fast', function() { $(this).remove(); }); 
+                        } else {
+                            alert(response.message); 
+                        }
+                    }.bind(this)
+                });
+            }
+        }.bind(this)); 
+        });
+        });
+
+    </script>
     {% endblock %}
 
 </body>

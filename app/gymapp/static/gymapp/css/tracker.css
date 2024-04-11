@@ -19,10 +19,17 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend_Peta/LexendPeta-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .tracker {
     display: flex;
     position: relative;
-    top: 10vh; 
+    top: 5vh; 
     left: 0; 
     width: auto; 
     justify-content: center;
@@ -31,18 +38,18 @@
 }
 
 .tracker h1 {
-    font-family: 'Notable';
-    font-size: clamp(20px, 6vw, 32px); 
+    font-family: 'Lexend-Regular';
+    font-size: clamp(40px, 8vw, 32px); 
     text-align: center;
     color: #FFD700;
     margin-bottom: 30px;
 }
 
 .tracker p {
-    font-family: 'Notable';
-    font-size: clamp(20px, 6vw, 32px); 
+    font-family: 'Lexend-Regular';
+    font-size: clamp(40px, 8vw, 32px); 
     text-align: center;
-    color: white;
+    color: #FFD700;
     margin-bottom: 30px;
 }
 
@@ -72,6 +79,8 @@ th {
 th, td {
     border: 1px solid black;
     padding: 9px;
+    white-space: nowrap;
+
 }
 
 .details-icon {
@@ -79,3 +88,10 @@ th, td {
     height: auto;
     vertical-align: middle; 
 }
+
+/* Note: for swipe to delete but not sure why it does not work. */
+.swipe-delete-indicator {
+    background-color: #F53C4A; 
+    transition: background-color 0.3s;
+}
+

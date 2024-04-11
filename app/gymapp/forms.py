@@ -127,5 +127,5 @@ class DetailsForm(forms.ModelForm):
         self.helper.layout = Layout(
             'reps',
             'weight',
-            Submit('submit', 'Save', css_class='btn-primary')
+            # Submit('submit', 'Save', css_class='btn-primary')
         )
