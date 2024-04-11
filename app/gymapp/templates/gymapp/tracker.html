@@ -8,38 +8,50 @@
 {% endblock extra_css %}
 
 {% block content %}
-<div class="tracker">
-    <h1>Tracker</h1>
-    <a href="{% url 'add_workout' %}">
-        <img class="add-workout" src="{% static 'gymapp/images/addworkout.svg' %}" alt="Add Workout">
-    </a>
-    <div class="tracker-content"> 
-        {% if sessions %}
-        <table frame=void rules=rows>
-            <thead>
-                <tr>
-                    <th>Workout Name</th>
-                    <th>Date</th>
-                    <th>Info</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for session in sessions %}
-                <tr>
-                    <td>{{ session.workout_name }}</td>
-                    <td>{{ session.date|date:"d-m-Y"  }}</td>
-                    <td>
-                        <a href="{% url 'exercises_done' session.id %}">
-                            <img src="{% static 'gymapp/images/info.svg' %}" alt="View details" class="details-icon">
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        <p>You haven't logged any workouts yet.</p>
-        {% endif %}
+<body>
+    <div class="tracker">
+        <h1>Tracker</h1>
+        <div  id="add-workout">
+            <a href="{% url 'add_workout' %}">
+            <img class="add-workout" src="{% static 'gymapp/images/addworkout.svg' %}" 
+            alt="Add Workout">
+        </a>
+        </div>
+
+        <div class="tracker-content"> 
+            {% if sessions %}
+            <table frame=void rules=rows>
+                <thead>
+                    <tr>
+                        <th>Workout Name</th>
+                        <th>Date</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for session in sessions %}
+                    <tr>
+                        <td>{{ session.workout_name }}</td>
+                        <td>{{ session.date|date:"d-m-Y"  }}</td>
+                        <td>
+                            <a href="{% url 'exercises_done' session.id %}">
+                                <img src="{% static 'gymapp/images/info.svg' %}" alt="View details" class="details-icon">
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>You haven't logged any workouts yet.</p>
+            {% endif %}
+        </div>
     </div>
-</div>
+    {% block javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <!-- Using CDN due to download issues. -->  
+    {% endblock %}
+
+</body>
+
 {% endblock %}

@@ -19,6 +19,7 @@ def base(request):
 def home(request):
     return render(request,'gymapp/home.html', {'user': request.user})
 
+
 def register(request):
     if request.method == 'POST':
         form = RegisterUser(request.POST)
@@ -188,3 +189,7 @@ def edit_set(request, session_id, set_id):
         'session_id': session_id,
         'exercise': set_detail.exercise
     })
+
+@login_required
+def att_leaderboard(request):
+    return render(request,'gymapp/att_leaderboard.html', {'user': request.user})

@@ -17,7 +17,11 @@
     </div>
 
     <div class="form-container">
-        <h1>{{ exercise.get_name_display }} - Set {{ set_num }}<br>How was your set?</h1>
+        <h1>{% if exercise.name == "OT" %}
+            {{ exercise.custom_name }}
+         {% else %}
+            {{ exercise.get_name_display }}
+         {% endif %} - Set {{ set_num }}<br>How was your set?</h1>
         <form method="post" action="{% url 'set_info' session_id exercise.id %}">
             {% csrf_token %}
             {% crispy form %}

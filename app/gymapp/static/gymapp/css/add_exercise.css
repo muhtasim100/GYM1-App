@@ -37,7 +37,7 @@ body {
 
 
 /* Button styling from https://getcssscan.com/css-buttons-examples By Module System Design. */
-.btn-primary {
+/* .btn-primary {
     margin-top: 5vh;
     width: 200px; 
     height: auto; 
@@ -71,7 +71,67 @@ body {
 .btn-primary:active {
     background-color: #e6c300; 
     border-color: #e6c300;
+} */
+
+
+.btn-primary {
+    position: relative;
+    padding: 15px 45px;
+    width: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 2px solid #FFD700;
+    background-color: black; 
+    color: #FFD700; 
+    cursor: pointer;
+    outline: none;
+    transition: 200ms;
 }
+
+.btn-primary i {
+    position: absolute;
+    color: transparent; 
+    transition: 200ms;
+}
+
+.btn-primary:focus {
+   
+    color: transparent;
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 25px 25px;
+    border-left: 2px solid #FFD700; 
+    animation: spin 2s 500ms forwards;
+}
+
+@keyframes spin {
+    80% {
+        border: 2px solid transparent;
+        border-left: 2px solid green;
+    }
+    100% {
+        transform: rotate(720deg);
+        border: 2px solid green;
+    }
+}
+
+button:focus i {
+    animation: check 300ms 2300ms forwards;
+}
+
+@keyframes check {
+    to {
+        color: green;
+    }
+}
+
+
 
 form {
     display: flex;
@@ -115,3 +175,4 @@ input, button, select, textarea {
     left: 15px;
     margin: 1%;
 }
+

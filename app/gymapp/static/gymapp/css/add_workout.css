@@ -14,12 +14,13 @@
 
 body {
     color: #FFD700;
+    width: auto;
 }
 
 .form-container {
     display: flex;
     position: relative;
-    top: 10vh; 
+    top: 8vh; 
     left: 0; 
     width: auto; 
     justify-content: center;
@@ -37,7 +38,7 @@ body {
 
 
 /* Button styling from https://getcssscan.com/css-buttons-examples By Module System Design. */
-.btn-primary {
+/* .btn-primary {
     margin-top: 5vh;
     width: 200px; 
     height: auto; 
@@ -71,16 +72,84 @@ body {
 .btn-primary:active {
     background-color: #e6c300; 
     border-color: #e6c300;
+} */
+
+/* From https://www.sitepoint.com/button-micro-interactions/#jitterybuttonmicrointeraction */
+.btn-primary {
+    margin-top: 5px;
+    position: relative;
+    padding: 12px 80px;
+    width: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    /* border-radius: 10px; */
+    border: 2px solid #FFD700;
+    background-color: #FFD700; 
+    color: black; 
+    cursor: pointer;
+    outline: none;
+    transition: 200ms;
 }
+
+.btn-primary i {
+    position: absolute;
+    color: transparent; 
+    transition: 200ms;
+}
+
+.btn-primary:focus {
+    color: transparent;
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 25px 25px;
+    border-left: 2px solid #FFD700; 
+    animation: spin 2s 500ms forwards;
+    background-color: black;
+}
+
+@keyframes spin {
+    0% {
+        background-color: black; 
+    }
+
+    80% {
+        border: 2px solid transparent;
+        border-left: 2px solid green;
+        background-color: black;
+    }
+    100% {
+        transform: rotate(720deg);
+        border: 2px solid green;
+        background-color: black;
+    }
+}
+
+button:focus i {
+    animation: check 300ms 2300ms forwards;
+}
+
+@keyframes check {
+    to {
+        color: green;
+        background-color: black;
+    }
+}
+
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 40vh;
+    min-height: 20vh;
     font-family: 'Notable';
-    margin: auto;
+    /* margin: auto; */
+    margin-top: 40px;
 }
 
 div {
@@ -96,6 +165,7 @@ div {
 
 .form-control {
     width: 100%;
+    height: 27px;
 }
 
 input[type="date"].form-control {
@@ -119,4 +189,9 @@ input, button, select, textarea {
     top: 10px;
     left: 15px;
     margin: 1%;
+}
+
+.requiredField {
+    margin-bottom: 2px;
+    font-size: large;
 }

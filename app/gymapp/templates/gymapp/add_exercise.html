@@ -6,27 +6,35 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'gymapp/css/add_exercise.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock extra_css %}
 
 {% block content %}
 <body>
     <div class="go-back">
-        <a href="{% url 'exercises_done' session.id %}">
+        <a href="{% url 'exercises_done' session.id %}" onmousedown="mouseclick.play()">
             <img src="{% static 'gymapp/images/back.svg' %}" alt="Go Back" class="back-btn">
         </a>
     </div>
     
     <div class="form-container">
         <h1>Add An Exercise</h1>
-        <form method="post" action="{% url 'add_exercise' session.id%}">
+        <form class="exerciseForm" method="post" action="{% url 'add_exercise' session.id%}" id="exerciseForm" >
             {% csrf_token %}
             {% crispy form %}
+            <button id= "btn" class="btn-primary morphing-button" type="submit" onmousedown="mouseclick.play()">
+                save
+                <i class="fa-solid fa-check"></i>
+            </button>
         </form>
     </div>    
     {% block javascript %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <!-- Using CDN due to download issues. -->
     <script src="{% static 'gymapp/js/custom_name.js' %}" type="text/javascript"></script>
+    <script src="{% static 'gymapp/js/submit-ae.js' %}" type="text/javascript"></script>
+    <script src="{% static 'gymapp/js/audio.js' %}" type="text/javascript"></script>
+
     {% endblock %}
 </body>
 {% endblock %}

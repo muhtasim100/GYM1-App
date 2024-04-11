@@ -43,10 +43,11 @@
                     {% for set in set_details %}
                     <tr>
                         <td class="checkbox-column">
-                            <input type="checkbox" name="selected_sets" value="{{ set.id }}">
+                            <input type="checkbox" name="selected_sets" value="{{ set.id }}" onmousedown="mouseclick.play()">
                         </td>
                         <td>{{ set.sets }} <a href="{% url 'edit_set' session_id=session.id set_id=set.id %}">
                             <img src="{% static 'gymapp/images/pencil.svg' %}" alt="Edit" class="edit-pen">
+                            <!-- By Secondtoughest via https://thenounproject.com/icon/edit-6752411/-->
                             </a>
                         </td>
                         
@@ -66,7 +67,8 @@
     {% block javascript %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
         <!-- Using CDN due to download issues. -->
-    <script src="{% static 'gymapp/js/delete.js' %}" type="text/javascript"></script>          
+    <script src="{% static 'gymapp/js/delete.js' %}" type="text/javascript"></script>
+    <script src="{% static 'gymapp/js/audio.js' %}" type="text/javascript"></script>
     {% endblock %}
 </body>
 {% endblock %}

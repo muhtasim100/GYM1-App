@@ -1,0 +1,22 @@
+{% extends "gymapp/base.html" %}
+{% load static %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/att_leaderboard.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<body>
+    <div class="leaderboard-container">
+        <h1>Attendance 2024</h1>
+        <div id="leaderboard">
+            <!-- js data in here -->
+        </div>
+    </div>
+    {% block javascript %}
+        <script src="{% static 'gymapp/js/mock_data.js' %}" type="text/javascript"></script>
+    {% endblock %}
+</body>
+{% endblock %}

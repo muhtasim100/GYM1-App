@@ -12,10 +12,9 @@ urlpatterns = [
     path('add_workout/', views.add_workout, name='add_workout'),
     path('session/<int:session_id>/', views.add_exercise, name='add_exercise'),
     path('session/<int:session_id>/exercises/', views.exercises_done, name='exercises_done'),
-    # path('exercise/<int:exercise_id>/set_info/', views.set_info, name='set_info'),
     path('session/<int:session_id>/exercise/<int:exercise_id>/set_info/', views.set_info, name='set_info'),
     path('session/<int:session_id>/exercise/<int:exercise_id>/details/', views.detail_view, name='detail_view'),
     path('delete_sets/', views.delete_sets, name='delete_sets'),
     path('session/<int:session_id>/set/<int:set_id>/edit/', views.edit_set, name='edit_set'),
-    # path('exercise/<int:exercise_id>/set/<int:set_id>/edit/', views.edit_set, name='edit_set'),
+    path('att_leaderboard/', views.att_leaderboard, name='att_leaderboard'),
 ]

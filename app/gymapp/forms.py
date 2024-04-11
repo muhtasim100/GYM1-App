@@ -79,7 +79,6 @@ class WorkoutForm(forms.ModelForm):
             Div(Field('workout_name'),
                 Field('date'),
                 css_class='form-row'),
-            Submit('submit', 'Save', css_class='btn-primary')
         )
 
 class ExerciseForm(forms.ModelForm):
@@ -95,8 +94,7 @@ class ExerciseForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field('name', css_class='form-control'),
-            Field('custom_name', css_class='form-control'),
-            Submit('submit', 'Save', css_class='btn-primary')
+            Field('custom_name', css_class='form-control')
             )
         self.fields['name'].choices = Exercise.EXERCISE_CHOICES
         self.fields['custom_name'].label = "Exercise Name"
