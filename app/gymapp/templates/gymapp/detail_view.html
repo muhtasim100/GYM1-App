@@ -32,6 +32,8 @@
         </div>
         <form id="delete-form" method="POST" action="{% url 'delete_sets' %}">
             {% csrf_token %}
+
+            {% if set_details %}
             <table>
                 <thead>
                     <tr>
@@ -59,6 +61,22 @@
                     {% endfor %}
                 </tbody>
             </table>
+
+            {% else %}
+                <div class="nosets"></div>
+                <div class="noset-msg"><h2>No sets have been added for this exercise yet.</h2>
+                </div>
+                    <div class="noset-img">
+                        <video class="animate" width="1600" height="810" loop autoplay muted>
+                            <source src="/app/gymapp/static/gymapp/videos/arms.mp4" type="video/mp4">
+                            This browser does not support the video tag.
+                            <!-- free to use mp4 video downloaded from
+                                https://www.pexels.com/video/a-man-writing-mathematical-equation-on-a-blackboard-3196292/ -->
+                        </video>
+                    </div>
+        
+            {% endif %}
+
             <div class="confirm-container">
                 <img src="{% static 'gymapp/images/confirm.svg' %}" alt="Confirm Delete" 
                 id="confirm-delete" style="display: none; cursor: pointer;">
