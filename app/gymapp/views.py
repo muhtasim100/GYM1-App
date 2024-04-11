@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm, DetailsForm, Exercise, ExerciseDetail
+from .forms import RegisterUser, LoginForm, WorkoutForm, ExerciseForm, DetailsForm, Exercise, ExerciseDetail, PostForm
 from django.db.models import Max
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
@@ -7,7 +7,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
-from .models import WorkoutSession
+from .models import WorkoutSession, Post
 from django.shortcuts import render, get_object_or_404 
 # Retrieve an object or return a "404 error" if it doesn't exis.
 
@@ -20,6 +20,25 @@ def base(request):
 def home(request):
     return render(request,'gymapp/home.html', {'user': request.user})
 
+@login_required
+def leaderboard(request):
+    return render(request,'gymapp/leaderboard.html', {'user': request.user})
+
+@login_required
+def att_leaderboard(request):
+    return render(request,'gymapp/att_leaderboard.html', {'user': request.user})
+
+@login_required
+def squat_leaderboard(request):
+    return render(request,'gymapp/squat_leaderboard.html', {'user': request.user})
+
+@login_required
+def bench_leaderboard(request):
+    return render(request,'gymapp/bench_leaderboard.html', {'user': request.user})
+
+@login_required
+def dead_leaderboard(request):
+    return render(request,'gymapp/dead_leaderboard.html', {'user': request.user})
 
 def register(request):
     if request.method == 'POST':
@@ -191,10 +210,6 @@ def edit_set(request, session_id, set_id):
         'exercise': set_detail.exercise
     })
 
-@login_required
-def att_leaderboard(request):
-    return render(request,'gymapp/att_leaderboard.html', {'user': request.user})
-
 @require_POST
 @login_required
 def delete_session(request):
@@ -209,3 +224,18 @@ def delete_exercise(request, exercise_id):
     session_id = exercise.workout_session_id  
     exercise.delete()
     return redirect('exercises_done', session_id=session_id)
+
+
+@login_required
+def forum(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.save()
+            return redirect('forum')
+    else:
+        form = PostForm()
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, 'gymapp/forum.html', {'posts': posts, 'form': form})

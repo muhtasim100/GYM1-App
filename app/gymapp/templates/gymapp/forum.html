@@ -1,0 +1,18 @@
+{% extends "gymapp/base.html" %}
+{% load static %}
+
+{% block content %}
+<div>
+    <h2>Community Discussion Board</h2>
+    {% for post in posts %}
+    <div>
+        <p><strong>{{ post.author.username }}</strong> ({{ post.created_at }}): {{ post.message }}</p>
+    </div>
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post</button>
+    </form>
+</div>
+{% endblock %}

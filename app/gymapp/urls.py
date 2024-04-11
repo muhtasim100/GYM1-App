@@ -19,6 +19,11 @@ urlpatterns = [
     path('att_leaderboard/', views.att_leaderboard, name='att_leaderboard'),
     path('delete_session/', views.delete_session, name='delete_session'),
     path('exercise/delete/<int:exercise_id>/', views.delete_exercise, name='delete_exercise'),
+    path('leaderboard/', views.leaderboard, name='leaderboard'),
+    path('bench_leaderboard/', views.bench_leaderboard, name='bench_leaderboard'),
+    path('squat_leaderboard/', views.squat_leaderboard, name='squat_leaderboard'),
+    path('dead_leaderboard/', views.dead_leaderboard, name='dead_leaderboard'),
+    path('forum/', views.forum, name='forum'),
 
 
 ]
