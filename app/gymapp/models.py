@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-import qrcode, datetime, random, phonenumbers
+import qrcode
 from io import BytesIO
 from django.core.files import File
 from django.core.exceptions import ValidationError
@@ -25,7 +25,7 @@ class CustomUser(AbstractUser):
             file_name = f'qr_{self.username}.png'
             self.qr_code.save(file_name, File(canvas), save=False)
             
-        super().save(*args, **kwargs)  # Save user with the QR code and phone numeber.
+        super().save(*args, **kwargs)  # Save user with the QR code and phone number.
 
 # Details of a session on a date including a name to identify the workout.
 class WorkoutSession(models.Model):

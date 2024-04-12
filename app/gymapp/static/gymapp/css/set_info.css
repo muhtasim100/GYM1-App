@@ -12,6 +12,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Fira-Bold';
+    src: url('../fonts/Fira_Code/FiraCode-VariableFont_wght.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend_Peta/LexendPeta-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     color: #FFD700;
 }

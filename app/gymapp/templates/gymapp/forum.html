@@ -1,18 +1,319 @@
 {% extends "gymapp/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gymapp/css/forum.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+{% endblock extra_css %}
+
 {% block content %}
-<div>
-    <h2>Community Discussion Board</h2>
-    {% for post in posts %}
-    <div>
-        <p><strong>{{ post.author.username }}</strong> ({{ post.created_at }}): {{ post.message }}</p>
+<body>
+<!-- All from https://www.codehim.com/html5-css3/html-code-for-discussion-forum/ -->
+        {% block javascript %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+            <!-- Using CDN due to download issues. -->
+            <script>
+                $( ".header-dropdown-trigger" ).click(function() {
+                    $( this ).toggleClass( "active" );
+                    $( ".header-dropdown" ).toggleClass( "expand" );
+                    });
+
+                    $( ".header-dropdown li" ).click(function() {
+                    $( ".header-dropdown-trigger" ).removeClass( "active" );
+                    $( ".header-dropdown" ).removeClass( "expand" );
+                    });
+
+                    $( ".button--approve" ).click(function() {
+                    $( this ).toggleClass( "active" );
+                    $( this ).siblings( '.button--deny' ).removeClass( "active" );
+                    });
+
+                    $( ".button--deny" ).click(function() {
+                    $( this ).toggleClass( "active" );
+                    $( this ).siblings( '.button--approve' ).removeClass( "active" );
+                    });
+
+                    $( ".comment-trigger" ).click(function() {
+                    $( this ).parent().parent().toggleClass( "post--commenting" );
+                    });
+
+                    $( ".button--flag" ).click(function() {
+                    $( this ).parent().parent().toggleClass( "post--commenting" );
+                    });
+
+
+                    $( ".button--confirm" ).click(function() {
+                    $( this ).parent().parent().parent().parent().parent().toggleClass( "post--commenting" );
+                    });
+
+                    $( ".button.cancel" ).click(function() {
+                    $( this ).parent().parent().parent().parent().parent().toggleClass( "post--commenting" );
+                    });
+            </script>
+        {% endblock %}
     </div>
-    {% endfor %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Post</button>
-    </form>
-</div>
+
+
+    <div class="container">
+        <div class="response-group">
+          <header>
+            <h2>
+              <strong>Forum</strong>
+            </h2>
+          </header>
+          <div class="header-dropdown">
+            <div class="panel">
+              <ul>
+                <li>
+                  <h2>
+                    Activity Title
+                  </h2>
+                  <span>2/4</span>
+                  <div class="progress">
+                    <div class="progress__complete"></div>
+                  </div>
+                </li>
+                <li>
+                  <h2>
+                    Activity Title
+                  </h2>
+                  <span>2/4</span>
+                  <div class="progress">
+                    <div class="progress__complete"></div>
+                  </div>
+                </li>
+                <li>
+                  <h2>
+                    Activity Title
+                  </h2>
+                  <span>2/4</span>
+                  <div class="progress">
+                    <div class="progress__complete"></div>
+                  </div>
+                </li>
+                <li>
+                  <h2>
+                    Activity Title
+                  </h2>
+                  <span>2/4</span>
+                  <div class="progress">
+                    <div class="progress__complete"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="response">
+            <div class="response__number">
+              1
+            </div>
+            <h1 class="response__title">
+              Coffee emporium avondale humid german rivertown vine street findlay market historic architecture?
+            </h1>
+            <div class="post-group">
+              <div class="post">
+                <div class="post__avatar"></div>
+                <h3 class="post__author">
+                  Lester McTester
+                </h3>
+                <h4 class="post__timestamp">
+                  Oct 13 at 8:51pm 
+                </h4>
+                <p class="post__body">
+                  Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                </p>
+                <div class="post__actions">
+                  <div class="button button--approve">
+                    <i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up solid"></i>
+                  </div>
+                  <div class="button button--deny">
+                    <i class="fa fa-thumbs-o-down"></i><i class="fa fa-thumbs-down solid"></i>
+                  </div>
+                  <div class="button button--fill comment-trigger">
+                    <span>Comment...</span>
+                  </div>
+                  <div class="button button--flag">
+                    <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>2
+                  </div>
+                  <div class="post__comments">
+                    <div class="comment-group">
+                      <div class="post">
+                        <div class="post__avatar comment__avatar"></div>
+                        <h3 class="post__author">
+                          Lester McTester
+                        </h3>
+                        <h4 class="post__timestamp">
+                          Oct 13 at 8:51pm 
+                        </h4>
+                        <p class="post__body">
+                          Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                        </p>
+                      </div>
+                      <div class="post">
+                        <div class="post__avatar comment__avatar"></div>
+                        <h3 class="post__author">
+                          Lester McTester
+                        </h3>
+                        <h4 class="post__timestamp">
+                          Oct 13 at 8:51pm 
+                        </h4>
+                        <p class="post__body">
+                          Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="comment-form">
+                      <div class="comment-form__avatar"></div>
+                      <textarea></textarea>
+                      <div class="comment-form__actions">
+                        <div class="button button--light cancel">
+                          Cancel
+                        </div>
+                        <div class="button button--confirm">
+                          Comment
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="post">
+                <div class="post__avatar"></div>
+                <h3 class="post__author">
+                  Lester McTester
+                </h3>
+                <h4 class="post__timestamp">
+                  Oct 13 at 8:51pm 
+                </h4>
+                <p class="post__body">
+                  Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                </p>
+                <div class="post__actions">
+                  <div class="button button--approve">
+                    <i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up solid"></i>
+                  </div>
+                  <div class="button button--deny">
+                    <i class="fa fa-thumbs-o-down"></i><i class="fa fa-thumbs-down solid"></i>
+                  </div>
+                  <div class="button button--fill comment-trigger">
+                    <span>Comment...</span>
+                  </div>
+                  <div class="button button--flag">
+                    <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>2
+                  </div>
+                  <div class="post__comments">
+                    <div class="comment-group">
+                      <div class="post">
+                        <div class="post__avatar comment__avatar"></div>
+                        <h3 class="post__author">
+                          Lester McTester
+                        </h3>
+                        <h4 class="post__timestamp">
+                          Oct 13 at 8:51pm 
+                        </h4>
+                        <p class="post__body">
+                          Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                        </p>
+                      </div>
+                      <div class="post">
+                        <div class="post__avatar comment__avatar"></div>
+                        <h3 class="post__author">
+                          Lester McTester
+                        </h3>
+                        <h4 class="post__timestamp">
+                          Oct 13 at 8:51pm 
+                        </h4>
+                        <p class="post__body">
+                          Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="comment-form">
+                      <div class="comment-form__avatar"></div>
+                      <textarea></textarea>
+                      <div class="comment-form__actions">
+                        <div class="button button--light cancel">
+                          Cancel
+                        </div>
+                        <div class="button button--confirm">
+                          Comment
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="post">
+                <div class="post__avatar"></div>
+                <h3 class="post__author">
+                  Lester McTester
+                </h3>
+                <h4 class="post__timestamp">
+                  Oct 13 at 8:51pm 
+                </h4>
+                <p class="post__body">
+                  Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                </p>
+                <div class="post__actions">
+                  <div class="button button--approve">
+                    <i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up solid"></i>
+                  </div>
+                  <div class="button button--deny">
+                    <i class="fa fa-thumbs-o-down"></i><i class="fa fa-thumbs-down solid"></i>
+                  </div>
+                  <div class="button button--fill comment-trigger">
+                    <span>Comment...</span>
+                  </div>
+                  <div class="button button--flag">
+                    <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>2
+                  </div>
+                  <div class="post__comments">
+                    <div class="comment-group">
+                      <div class="post">
+                        <div class="post__avatar comment__avatar"></div>
+                        <h3 class="post__author">
+                          Lester McTester
+                        </h3>
+                        <h4 class="post__timestamp">
+                          Oct 13 at 8:51pm 
+                        </h4>
+                        <p class="post__body">
+                          Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                        </p>
+                      </div>
+                      <div class="post">
+                        <div class="post__avatar comment__avatar"></div>
+                        <h3 class="post__author">
+                          Lester McTester
+                        </h3>
+                        <h4 class="post__timestamp">
+                          Oct 13 at 8:51pm 
+                        </h4>
+                        <p class="post__body">
+                          Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="comment-form">
+                      <div class="comment-form__avatar"></div>
+                      <textarea></textarea>
+                      <div class="comment-form__actions">
+                        <div class="button button--light cancel">
+                          Cancel
+                        </div>
+                        <div class="button button--confirm">
+                          Comment
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
 {% endblock %}

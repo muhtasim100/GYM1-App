@@ -217,6 +217,10 @@ def delete_session(request):
     if session_id:
         session = get_object_or_404(WorkoutSession, id=session_id, user=request.user)
         session.delete()
+        return JsonResponse({'success': True, 'message': 'Session deleted successfully'})
+    else:
+        return JsonResponse({'success': False, 'message': 'Session ID not provided'}, status=400)
+
     
 @login_required
 def delete_exercise(request, exercise_id):
@@ -232,10 +236,10 @@ def forum(request):
         form = PostForm(request.POST)
         if form.is_valid():
             new_post = form.save(commit=False)
-            new_post.author = request.user
+            new_post.user = request.user
             new_post.save()
             return redirect('forum')
-    else:
-        form = PostForm()
+    form = PostForm()
+
     posts = Post.objects.all().order_by('-created_at')
     return render(request, 'gymapp/forum.html', {'posts': posts, 'form': form})
