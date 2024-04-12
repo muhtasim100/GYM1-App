@@ -71,6 +71,7 @@ ul {
 
 strong{
     font-family: 'Lexend-Regular';
+    color: black;
 }
 .comment-form__avatar, .post__avatar {
   position: absolute;
@@ -124,7 +125,7 @@ strong{
   position: relative;
   width: 100%;
   padding: 100px 15px 15px;
-  background-color: gray;
+  background-color: #D9D9D9;
   border-radius: 2px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
 }
@@ -134,7 +135,7 @@ strong{
   left: 0;
   right: 0;
   padding: 5px 15px;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: #FFD700;
   border-radius: 2px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
   z-index: 100;
